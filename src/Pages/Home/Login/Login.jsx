@@ -4,11 +4,19 @@ import loginAnimation from "../../../assets/images/login.json"
 import { Link } from 'react-router';
 
 const Login = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email,password);
+    };
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gray-50 p-6">
       
       {/* Left: Lottie Animation */}
-      <div className="w-full md:w-1/2 max-w-lg">
+      <div className="w-full md:w-1/2 max-w-lg lg:block hidden ">
         <Lottie animationData={loginAnimation} loop={true} />
       </div>
 
@@ -16,7 +24,7 @@ const Login = () => {
       <div className="w-full md:w-1/2 max-w-md bg-white rounded-lg shadow-lg p-8">
         <h2 className="text-3xl font-bold mb-6 text-center text-green-600">Login to Your Account</h2>
         
-        <form className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
             <input 
