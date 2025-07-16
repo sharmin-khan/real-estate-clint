@@ -67,7 +67,7 @@ const Advertise = () => {
               >
                 {property.verified ? "Verified Property" : "Not Verified"}
               </p>
-              <button className=" text-sm font-medium mt-2 border border-green-500 text-green-500 px-2 py-1 hover:bg-green-500 hover:text-white rounded bg-white ">
+              <button className="mt-2 border border-green-500 text-green-500 px-2 py-1 hover:bg-green-500 hover:text-white rounded bg-white ">
                 View Details
               </button>
             </div>
