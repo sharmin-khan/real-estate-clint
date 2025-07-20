@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/images/logo.avif";
+import { use } from "react";
+import { AuthContext } from "../../context/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user, logOut } =use(AuthContext);
+
   const navLinks = (
     <>
       <li>
@@ -31,6 +35,17 @@ const Navbar = () => {
     </>
   );
 
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        // optionally show a toast or alert
+        console.log("User logged out");
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+      });
+  };
+
   return (
     <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 container mx-auto">
       {/* Left Side Logo */}
@@ -48,7 +63,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal gap-2 px-1">{navLinks}</ul>
       </div>
 
-      <div className="navbar-end flex items-center gap-2">
+      <div className="navbar-end flex items-center gap-4">
         {/* Mobile dropdown */}
         <div className="dropdown dropdown-end md:hidden">
           <label tabIndex={0} className="btn btn-ghost">
@@ -59,29 +74,39 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             {navLinks}
           </ul>
         </div>
 
-        {/* Login Button */}
-        <Link
-          to="/login"
-          className="lg:text-lg font-semibold border px-4 py-2 bg-green-500 text-white rounded hover:bg-white hover:text-green-500"
-        >
-          Login
-        </Link>
+        {/* User info or login button */}
+        {user ? (
+          <div className="flex items-center gap-3">
+            <img
+              src={user.photoURL || "https://via.placeholder.com/40"}
+              alt={user.displayName || "User"}
+              className="w-10 h-10 rounded-full border border-green-500"
+              title={user.displayName}
+            />
+            <span className="hidden md:inline font-semibold text-green-700">{user.displayName || "User"}</span>
+            <button
+              onClick={handleLogout}
+              className="text-red-500 font-semibold border border-red-500 px-3 py-1 rounded hover:bg-red-500 hover:text-white transition"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            className="lg:text-lg font-semibold border px-4 py-2 bg-green-500 text-white rounded hover:bg-white hover:text-green-500"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
