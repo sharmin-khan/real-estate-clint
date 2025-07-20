@@ -52,29 +52,29 @@ const Register = () => {
           text: error.message,
         });
       });
-    }
-    //Google Sign In
-    const handleGoogleSignIn = () => {
-      signInWithGoogle()
-        .then((result) => {
-          console.log("Google Register successful:", result.user);
-          Swal.fire({
-            icon: "success",
-            title: "Google Register Successfully",
-            text: "Welcome to your account!",
-            timer: 1500,
-            showConfirmButton: false,
-          });
-        })
-        .catch((error) => {
-          console.error("Google register Error:", error.message);
-          Swal.fire({
-            icon: "error",
-            title: "Google Register Failed",
-            text: error.message,
-          });
+  };
+  //Google Sign In
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        console.log("Google Register successful:", result.user);
+        Swal.fire({
+          icon: "success",
+          title: "Google Register Successfully",
+          text: "Welcome to your account!",
+          timer: 1500,
+          showConfirmButton: false,
         });
-        }; 
+      })
+      .catch((error) => {
+        console.error("Google register Error:", error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Google Register Failed",
+          text: error.message,
+        });
+      });
+  };
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 bg-base-200">
       {/* Left Animation */}
