@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link } from "react-router";
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/images/register.json";
+import { AuthContext } from "../../context/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser } = use(AuthContext);
   const [error, setError] = useState("");
 
   const handleRegister = (e) => {
@@ -27,8 +30,28 @@ const Register = () => {
 
     setError("");
     console.log("Registering user:", { name, photo, email, password });
-    // firebase.createUserWithEmailAndPassword
-    // updateProfile({ displayName: name, photoURL: photo })
+
+    //Create USer
+    createUser(email, password)
+      .then((result) => {
+        console.log("User created:", result.user);
+        Swal.fire({
+          icon: "success",
+          title: "Register Successfully",
+          text: "Your account has been created.",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Signup Error:", error.message);
+        Swal.fire({
+          icon: "error",
+          title: "register Failed",
+          text: error.message,
+        });
+      });
   };
 
   return (
@@ -75,7 +98,7 @@ const Register = () => {
             className="input input-bordered w-full"
             required
           />
-         
+
           <label
             htmlFor="email"
             className="block text-gray-700 font-semibold mb-2"
@@ -89,7 +112,7 @@ const Register = () => {
             className="input input-bordered w-full"
             required
           />
-            <label
+          <label
             htmlFor="password"
             className="block text-gray-700 font-semibold mb-2"
           >
