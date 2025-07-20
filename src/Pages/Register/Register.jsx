@@ -1,5 +1,5 @@
 import React, { use, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/images/register.json";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
@@ -8,6 +8,9 @@ import Swal from "sweetalert2";
 const Register = () => {
   const { createUser, signInWithGoogle } = use(AuthContext);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+   const location = useLocation();
+   const from = location.state?.from?.pathname || "/";
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -43,6 +46,7 @@ const Register = () => {
           showConfirmButton: false,
         });
         form.reset();
+         navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error("Register Error:", error.message);
@@ -65,6 +69,7 @@ const Register = () => {
           timer: 1500,
           showConfirmButton: false,
         });
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error("Google register Error:", error.message);

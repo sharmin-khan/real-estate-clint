@@ -1,12 +1,15 @@
 import React, { use } from "react";
 import Lottie from "lottie-react";
 import loginAnimation from "../../../assets/images/login.json";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../context/AuthContext/AuthContext";
 
 const Login = () => {
   const { logInUser, signInWithGoogle } = use(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -25,6 +28,7 @@ const Login = () => {
           showConfirmButton: false,
         });
           form.reset();
+          navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error("Login error:", error);
@@ -47,6 +51,7 @@ const Login = () => {
           timer: 1500,
           showConfirmButton: false,
         });
+         navigate(from, { replace: true });
          
       })
       .catch((error) => {
