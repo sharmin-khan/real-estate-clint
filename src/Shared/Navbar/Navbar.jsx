@@ -4,7 +4,7 @@ import { use } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 
 const Navbar = () => {
-  const { user, logOut } =use(AuthContext);
+  const { user, logOut } = use(AuthContext);
 
   const navLinks = (
     <>
@@ -74,10 +74,18 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </label>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
             {navLinks}
           </ul>
         </div>
@@ -91,10 +99,12 @@ const Navbar = () => {
               className="w-10 h-10 rounded-full border border-green-500"
               title={user.displayName}
             />
-            <span className="hidden md:inline font-semibold text-green-700">{user.displayName || "User"}</span>
+            <span className="hidden md:inline font-semibold text-green-700">
+              {user.displayName || "User"}
+            </span>
             <button
               onClick={handleLogout}
-              className="text-red-500 font-semibold border border-red-500 px-3 py-1 rounded hover:bg-red-500 hover:text-white transition"
+              className="text-red-500 font-semibold border border-red-500 px-4 py-2 rounded hover:bg-red-500 hover:text-white transition"
             >
               Logout
             </button>
