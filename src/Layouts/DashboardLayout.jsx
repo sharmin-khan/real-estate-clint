@@ -5,7 +5,10 @@ import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
   const { user } = use(AuthContext);
-  const [role] = useRole(user?.email);
+  const [role, loading] = useRole(user?.email);
+  if (loading) {
+    return <span>Loading...</span>;
+  }
 
   return (
     <div className="md:flex">

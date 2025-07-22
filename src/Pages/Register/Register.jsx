@@ -1,16 +1,17 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/images/register.json";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = () => {
-  const { createUser, signInWithGoogle } = use(AuthContext);
+  const { createUser, signInWithGoogle } = React.useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-   const location = useLocation();
-   const from = location.state?.from?.pathname || "/";
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -34,29 +35,51 @@ const Register = () => {
     setError("");
     console.log("Registering user:", { name, photo, email, password });
 
-    //Create USer
+    //Create User with Firebase
     createUser(email, password)
       .then((result) => {
         console.log("User created:", result.user);
-        Swal.fire({
-          icon: "success",
-          title: "Register Successfully",
-          text: "Your account has been created.",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-        form.reset();
-         navigate(from, { replace: true });
+
+        // Save user to backend DB
+        const saveUser = {
+          name: name,
+          email: email,
+          role: "user",  
+          photoURL: photo,
+          createdAt: new Date(),
+        };
+
+        axios.post("http://localhost:3000/users", saveUser)
+          .then(() => {
+            Swal.fire({
+              icon: "success",
+              title: "Register Successfully",
+              text: "Your account has been created.",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+            form.reset();
+            navigate(from, { replace: true });
+          })
+          .catch((err) => {
+            console.error("Save user failed:", err);
+            Swal.fire({
+              icon: "error",
+              title: "Failed to save user data",
+              text: err.message,
+            });
+          });
       })
       .catch((error) => {
         console.error("Register Error:", error.message);
         Swal.fire({
           icon: "error",
-          title: "register Failed",
+          title: "Register Failed",
           text: error.message,
         });
       });
   };
+
   //Google Sign In
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -80,6 +103,7 @@ const Register = () => {
         });
       });
   };
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 bg-base-200">
       {/* Left Animation */}
@@ -165,7 +189,7 @@ const Register = () => {
               type="button"
               className="btn bg-white text-black border-[#e5e5e5]"
             >
-              <svg
+               <svg
                 aria-label="Google logo"
                 width="16"
                 height="16"
