@@ -7,9 +7,11 @@ const useRole = (email) => {
 
   useEffect(() => {
     if (email) {
+       console.log("Checking role for:", email);
       axios
-        .get(`https://your-server-url.com/users/role/${email}`)
+        .get(`http://localhost:3000/users/role/${email}`)
         .then((res) => {
+           console.log("Role response:", res.data);
           setRole(res.data.role);
           setLoading(false);
         })
