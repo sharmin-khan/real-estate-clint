@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { use, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -9,7 +9,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 const PropertyDetailsPage = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const { user } = useContext(AuthContext);
+  const { user } = use(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [reviewText, setReviewText] = useState("");
 
@@ -82,7 +82,7 @@ const PropertyDetailsPage = () => {
       <p className="mt-2"><strong>Location:</strong> {property.location}</p>
       <p><strong>Agent:</strong> {property.agentName}</p>
       <p><strong>Status:</strong> {property.verificationStatus}</p>
-      <p><strong>Price:</strong> ${property.priceMin} - ${property.priceMax}</p>
+      <p><strong>Price:</strong> ${property.minPrice} - ${property.maxPrice}</p>
 
       <button
         onClick={handleAddToWishlist}

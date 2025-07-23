@@ -2,12 +2,13 @@ import { Outlet, NavLink } from "react-router";
 import { use } from "react";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 import useRole from "../hooks/useRole";
+import LoadingSpinner from "../component/LoadingSpinner/LoadingSpinner";
 
 const DashboardLayout = () => {
   const { user } = use(AuthContext);
   const [role, loading] = useRole(user?.email);
   if (loading) {
-    return <span>Loading...</span>;
+    return <LoadingSpinner/>;
   }
 
   return (

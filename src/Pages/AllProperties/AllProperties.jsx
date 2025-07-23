@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 import axios from "axios";
+import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 
 const AllProperties = () => {
   const { data: properties = [], isLoading } = useQuery({
@@ -11,7 +12,7 @@ const AllProperties = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
+  if (isLoading) return <p className="text-center mt-10"><LoadingSpinner></LoadingSpinner></p>;
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
