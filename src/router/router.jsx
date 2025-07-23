@@ -27,6 +27,8 @@ import MySoldProperties from "../Dashboard/agent/MySoldProperties";
 import ManageProperties from "../Dashboard/admin/ManageProperties";
 import ManageUsers from "../Dashboard/admin/ManageUsers";
 import ManageReviews from "../Dashboard/admin/ManageReviews";
+import PropertyDetailsPage from "../Pages/PropertyDetailsPage/PropertyDetailsPage";
+import AllProperties from "../Pages/AllProperties/AllProperties";
 
 
 
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
         Component: Register,
       },
       {
+        path: 'all-properties',
+        element: <PrivateRoute><AllProperties></AllProperties></PrivateRoute> 
+      },
+      {
+        path: "property-details/:id",
+        Component :PropertyDetailsPage,
+      },
+      {
         path: "dashboard",
         element: (
           <PrivateRoute>
@@ -59,7 +69,10 @@ const router = createBrowserRouter([
         ),
         children: [
           // Common profile route for all roles
-          { path: "profile", element: <Profile /> },
+          {
+             path: "profile",
+             element: <Profile />
+             },
 
           // User routes (Protected)
           {

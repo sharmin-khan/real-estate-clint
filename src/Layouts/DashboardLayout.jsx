@@ -15,10 +15,13 @@ const DashboardLayout = () => {
       <div className="md:w-64 bg-green-100 p-4 min-h-screen">
         <h2 className="text-xl font-bold mb-4">Dashboard</h2>
 
-        {/* Common */}
+            {/* Common */}
         <NavLink
           to="/dashboard/profile"
-          className="block py-1 text-gray-800 hover:underline"
+          className={({ isActive }) =>
+            "block py-1 text-gray-800 hover:underline" +
+            (isActive ? " font-bold text-green-700" : "")
+          }
         >
           My Profile
         </NavLink>
@@ -28,19 +31,28 @@ const DashboardLayout = () => {
           <>
             <NavLink
               to="/dashboard/wishlist"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               Wishlist
             </NavLink>
             <NavLink
               to="/dashboard/bought"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               Property Bought
             </NavLink>
             <NavLink
               to="/dashboard/my-reviews"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               My Reviews
             </NavLink>
@@ -52,25 +64,37 @@ const DashboardLayout = () => {
           <>
             <NavLink
               to="/dashboard/add-property"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               Add Property
             </NavLink>
             <NavLink
               to="/dashboard/my-properties"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               My Added Properties
             </NavLink>
             <NavLink
               to="/dashboard/sold-properties"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               My Sold Properties
             </NavLink>
             <NavLink
               to="/dashboard/requests"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               Requested Properties
             </NavLink>
@@ -82,19 +106,28 @@ const DashboardLayout = () => {
           <>
             <NavLink
               to="/dashboard/manage-properties"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               Manage Properties
             </NavLink>
             <NavLink
               to="/dashboard/manage-users"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               Manage Users
             </NavLink>
             <NavLink
               to="/dashboard/manage-reviews"
-              className="block py-1 hover:underline"
+              className={({ isActive }) =>
+                "block py-1 hover:underline" +
+                (isActive ? " font-bold text-green-700" : "")
+              }
             >
               Manage Reviews
             </NavLink>
