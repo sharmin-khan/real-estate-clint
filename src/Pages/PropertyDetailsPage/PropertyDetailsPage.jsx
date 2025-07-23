@@ -69,6 +69,7 @@ const PropertyDetailsPage = () => {
       agentName: property.agentName, // add agent name
       userEmail: user.email,
       userName: user.displayName, // add reviewer name
+      userImage: user.photoURL, // add reviewer image
       comment: reviewText,
       time: new Date(), // add review time
     };

@@ -66,7 +66,7 @@ const apartments = [
 const ApartmentSale = () => {
   return (
     <section className="my-12 px-4 md:px-8 container mx-auto">
-      <h2 className="text-2xl text-gray-700 md:text-4xl font-bold text-center mb-8">
+      <h2 className="text-2xl text-gray-700 md:text-3xl font-bold text-center mb-8">
         Apartments for Sale
       </h2>
 
