@@ -65,8 +65,12 @@ const PropertyDetailsPage = () => {
 
     const review = {
       propertyId: id,
+      propertyTitle: property.title, // add title
+      agentName: property.agentName, // add agent name
       userEmail: user.email,
+      userName: user.displayName, // add reviewer name
       comment: reviewText,
+      time: new Date(), // add review time
     };
 
     try {
