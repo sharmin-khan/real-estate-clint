@@ -5,9 +5,12 @@ import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivateRoute from "../routes/PrivateRoute";
 import RoleBasedRoute from "../routes/RoleBasedRoute"; // Import RoleBasedRoute
 
+
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Home/Login/Login";
 import Register from "../Pages/Register/Register";
+import PropertyDetailsPage from "../Pages/PropertyDetailsPage/PropertyDetailsPage";
+import AllProperties from "../Pages/AllProperties/AllProperties";
 
 // Common Profile Wrapper
 import Profile from "../Dashboard/Profile";
@@ -27,8 +30,7 @@ import MySoldProperties from "../Dashboard/agent/MySoldProperties";
 import ManageProperties from "../Dashboard/admin/ManageProperties";
 import ManageUsers from "../Dashboard/admin/ManageUsers";
 import ManageReviews from "../Dashboard/admin/ManageReviews";
-import PropertyDetailsPage from "../Pages/PropertyDetailsPage/PropertyDetailsPage";
-import AllProperties from "../Pages/AllProperties/AllProperties";
+
 
 
 
@@ -58,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: "property-details/:id",
-        Component :PropertyDetailsPage,
+        element: <PrivateRoute><PropertyDetailsPage /></PrivateRoute>,
       },
       {
         path: "dashboard",
