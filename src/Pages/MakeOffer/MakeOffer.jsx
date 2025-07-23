@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
+import useRole from "../../hooks/useRole";
 
 const MakeOffer = () => {
   const { propertyId } = useParams();
@@ -11,16 +13,17 @@ const MakeOffer = () => {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [property, setProperty] = useState(null);
+  const [role, roleLoading] = useRole(user?.email);
 
   // Fetch property details
   useEffect(() => {
     axiosSecure.get(`/properties/${propertyId}`).then(res => setProperty(res.data));
   }, [propertyId, axiosSecure]);
 
-  if (!property) return <div>Loading...</div>;
+  if (!property || roleLoading) return <div><LoadingSpinner/></div>;
 
   const handleOffer = async () => {
-    if (user.role !== "user") {
+    if (role !== "user") {
       Swal.fire({ icon: "error", title: "Only users can buy property!" });
       return;
     }
