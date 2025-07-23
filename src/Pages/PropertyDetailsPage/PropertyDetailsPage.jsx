@@ -35,18 +35,24 @@ const PropertyDetailsPage = () => {
   const handleAddToWishlist = async () => {
     const wishlistItem = {
       propertyId: id,
-      userEmail: user.email,
-      title: property.title,
-      priceRange: property.priceRange,
-      image: property.image,
+      propertyTitle: property.title,
+      propertyImage: property.image,
+      location: property.location,
+      agentName: property.agentName,
+      agentImage: property.agentImage,
+      verificationStatus: property.verificationStatus,
+      email: user.email,
+      priceMin: property.priceMin,
+      priceMax: property.priceMax,
     };
 
     try {
       const res = await axiosSecure.post("/wishlist", wishlistItem);
+      console.log("Wishlist add response:", res.data); // <-- Debug log
       if (res.data.insertedId) {
         Swal.fire("Success", "Added to wishlist!", "success");
       }
-    } catch (error) {
+    } catch {
       Swal.fire("Error", "Something went wrong", "error");
     }
   };
@@ -69,9 +75,9 @@ const PropertyDetailsPage = () => {
       setShowModal(false);
       setReviewText("");
       Swal.fire("Success", "Review added!", "success");
-    } catch (error) {
+    } catch {
       Swal.fire("Oops!", "Failed to add review", "error");
-}
+    }
   };
 
   return (

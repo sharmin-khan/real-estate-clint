@@ -16,7 +16,7 @@ import AllProperties from "../Pages/AllProperties/AllProperties";
 import Profile from "../Dashboard/Profile";
 
 // User components
-import Wishlist from "../Dashboard/user/Wishlist";
+import WishlistPage from "../Pages/WishlistPage/WishlistPage";
 import PropertyBought from "../Dashboard/user/PropertyBought";
 import MyReviews from "../Dashboard/user/MyReviews";
 
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
           // User routes (Protected)
           {
             path: "wishlist",
-            element: <RoleBasedRoute allowedRoles={['user']}><Wishlist /></RoleBasedRoute>,
+            element: <RoleBasedRoute allowedRoles={['user']}><WishlistPage /></RoleBasedRoute>,
           },
           {
             path: "bought", // Fixed path

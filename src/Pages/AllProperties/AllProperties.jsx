@@ -12,7 +12,7 @@ const AllProperties = () => {
     },
   });
 
-  if (isLoading) return <p className="text-center mt-10"><LoadingSpinner></LoadingSpinner></p>;
+  if (isLoading) return <div className="text-center mt-10"><LoadingSpinner /></div>;
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
@@ -52,8 +52,8 @@ const AllProperties = () => {
             </p>
 
             <p className="text-sm">
-              <strong>Price:</strong> ${property.priceMin} - $
-              {property.priceMax}
+              <strong>Price:</strong> {property.priceMin}  - 
+              {property.priceMax} BDT
             </p>
 
             <Link to={`/property-details/${property._id}`}>
