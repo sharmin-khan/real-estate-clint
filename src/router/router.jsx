@@ -11,6 +11,7 @@ import Login from "../Pages/Home/Login/Login";
 import Register from "../Pages/Register/Register";
 import PropertyDetailsPage from "../Pages/PropertyDetailsPage/PropertyDetailsPage";
 import AllProperties from "../Pages/AllProperties/AllProperties";
+import MakeOffer from "../Pages/MakeOffer/MakeOffer";
 
 // Common Profile Wrapper
 import Profile from "../Dashboard/Profile";
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "property-details/:id",
         element: <PrivateRoute><PropertyDetailsPage /></PrivateRoute>,
+      },
+      {
+        path: "make-offer/:propertyId",
+        element: <PrivateRoute><MakeOffer /></PrivateRoute>,
       },
       {
         path: "dashboard",
