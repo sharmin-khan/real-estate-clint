@@ -40,7 +40,8 @@ const AddProperty = () => {
         agentName: user?.displayName || user?.name,
         agentEmail: user?.email,
         priceMin: Number(data.priceMin),
-        priceMax: Number(data.priceMax)
+        priceMax: Number(data.priceMax),
+        verificationStatus: "pending"
       };
       await axios.post("http://localhost:3000/properties", propertyData);
       Swal.fire("Success", "Property added successfully!", "success");
