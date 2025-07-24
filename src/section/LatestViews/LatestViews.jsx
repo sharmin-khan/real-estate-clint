@@ -9,7 +9,7 @@ const LatestReviews = () => {
     axios.get("http://localhost:3000/reviews")
       .then(res => {
         const sorted = res.data.sort((a, b) => new Date(b.time) - new Date(a.time));
-        setLatestReviews(sorted.slice(0, 3));
+        setLatestReviews(sorted.slice(0, 4));
         setError(null);
       })
       .catch(err => {
@@ -28,11 +28,11 @@ const LatestReviews = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-4 my-12">
+    <div className="container mx-auto px-4 md:px-8 my-12">
       <h2 className="text-2xl text-gray-700 md:text-3xl font-bold text-center mb-8">Latest User Reviews</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {latestReviews.map((review, index) => (
-          <div key={review._id || index} className="bg-white border rounded-xl shadow-lg p-5 hover:shadow-xl transition-shadow duration-300">
+          <div key={review._id || index} className="bg-white border-gray-400 border-1 rounded-xl shadow-lg p-5 hover:shadow-xl transition-shadow duration-300">
             <div className="flex items-center gap-4 mb-4">
               <img
                 src={review.userImage || "https://i.ibb.co/L90wLWW/default-user.png"}

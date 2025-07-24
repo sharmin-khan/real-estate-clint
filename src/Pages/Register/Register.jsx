@@ -5,6 +5,7 @@ import registerAnimation from "../../assets/images/register.json";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { updateProfile, reload } from "firebase/auth";
 
 const Register = () => {
   const { createUser, signInWithGoogle } = React.useContext(AuthContext);
@@ -20,6 +21,9 @@ const Register = () => {
     const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
+
+    // Debug: log the name value
+    console.log('Register form name value:', name);
 
     // Password validation
     if (password.length < 6) {
@@ -38,37 +42,46 @@ const Register = () => {
     //Create User with Firebase
     createUser(email, password)
       .then((result) => {
-        console.log("User created:", result.user);
+        // Update Firebase profile with name and photo
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo
+        }).then(() => {
+          // Force reload user info from Firebase
+          reload(result.user).then(() => {
+            // Save user to backend DB
+            const saveUser = {
+              name: name,
+              email: email,
+              role: "user",  
+              photoURL: photo,
+              createdAt: new Date(),
+            };
+            // Debug: log the saveUser object
+            console.log('saveUser object:', saveUser);
 
-        // Save user to backend DB
-        const saveUser = {
-          name: name,
-          email: email,
-          role: "user",  
-          photoURL: photo,
-          createdAt: new Date(),
-        };
-
-        axios.post("http://localhost:3000/users", saveUser)
-          .then(() => {
-            Swal.fire({
-              icon: "success",
-              title: "Register Successfully",
-              text: "Your account has been created.",
-              timer: 1500,
-              showConfirmButton: false,
-            });
-            form.reset();
-            navigate(from, { replace: true });
-          })
-          .catch((err) => {
-            console.error("Save user failed:", err);
-            Swal.fire({
-              icon: "error",
-              title: "Failed to save user data",
-              text: err.message,
-            });
+            axios.post("http://localhost:3000/users", saveUser)
+              .then(() => {
+                Swal.fire({
+                  icon: "success",
+                  title: "Register Successfully",
+                  text: "Your account has been created.",
+                  timer: 1500,
+                  showConfirmButton: false,
+                });
+                form.reset();
+                navigate(from, { replace: true });
+              })
+              .catch((err) => {
+                console.error("Save user failed:", err);
+                Swal.fire({
+                  icon: "error",
+                  title: "Failed to save user data",
+                  text: err.message,
+                });
+              });
           });
+        });
       })
       .catch((error) => {
         console.error("Register Error:", error.message);

@@ -25,10 +25,9 @@ const MyProfile = () => {
         <p className="text-lg font-semibold">Name: {user?.displayName || "N/A"}</p>
         <p className="text-gray-600">Email: {user?.email}</p>
         
-        {/* Show role only if it's not 'user' */}
-        {role !== "user" && (
-          <p className="text-blue-600 capitalize">Role: {role}</p>
-        )}
+      
+          <p className="text-green-600 capitalize">Role: {role}</p>
+        
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ const Advertise = () => {
             <div className="p-4 space-y-2">
               <h3 className="text-lg font-semibold">{property.location}</h3>
               <p className="text-gray-600">
-                ${property.priceMin} - ${property.priceMax}
+                {property.priceMin} - {property.priceMax} BDT
               </p>
               <p
                 className={`text-sm font-medium ${
