@@ -26,6 +26,7 @@ import AddProperty from "../Dashboard/agent/AddProperty";
 import MyAddedProperties from "../Dashboard/agent/MyAddedProperties";
 import RequestedProperties from "../Dashboard/agent/RequestedProperties";
 import MySoldProperties from "../Dashboard/agent/MySoldProperties";
+import UpdateProperty from "../Dashboard/agent/UpdateProperty";
 
 // Admin components
 import ManageProperties from "../Dashboard/admin/ManageProperties";
@@ -111,6 +112,10 @@ const router = createBrowserRouter([
           {
             path: "requests", // Fixed path
             element: <RoleBasedRoute allowedRoles={['agent']}><RequestedProperties /></RoleBasedRoute>,
+          },
+          {
+            path: "update-property/:id",
+            element: <RoleBasedRoute allowedRoles={['agent']}><UpdateProperty /></RoleBasedRoute>,
           },
 
           // Admin routes (Protected)

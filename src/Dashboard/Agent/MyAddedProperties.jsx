@@ -3,11 +3,13 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const MyAddedProperties = () => {
   const { user } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const [editProperty, setEditProperty] = useState(null);
+  const navigate = useNavigate();
 
   // Fetch agent's properties
   const { data: properties = [], isLoading } = useQuery({
@@ -82,7 +84,7 @@ const MyAddedProperties = () => {
               {property.verificationStatus !== "rejected" && (
                 <button
                   className="btn btn-xs btn-info"
-                  onClick={() => setEditProperty(property)}
+                  onClick={() => navigate(`/dashboard/update-property/${property._id}`)}
                 >
                   Update
                 </button>
