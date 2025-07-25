@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -30,7 +31,7 @@ const ManageUsers = () => {
     setUsers(prev => prev.filter(u => u._id !== id));
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div className="text-center mt-10"><LoadingSpinner /></div>;
 
   return (
     <div className="w-full max-w-5xl mx-auto px-2 md:px-6 lg:px-12">

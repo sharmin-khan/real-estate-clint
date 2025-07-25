@@ -55,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 container mx-auto">
+    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 px-4 ">
       {/* Left Side Logo */}
       <div className="navbar-start">
         <Link to="/" className="flex items-center gap-2 text-xl font-extrabold">
@@ -112,7 +112,7 @@ const Navbar = () => {
             </span>
             <button
               onClick={handleLogout}
-              className="text-red-500 font-semibold border border-red-500 px-4 py-2 rounded hover:bg-red-500 hover:text-white transition"
+              className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 md:px-4 md:py-2 px-2 py-1 rounded hover:bg-red-500 hover:text-white transition"
             >
               Logout
             </button>
@@ -120,7 +120,7 @@ const Navbar = () => {
         ) : (
           <Link
             to="/login"
-            className="lg:text-lg font-semibold border px-4 py-2 bg-green-500 text-white rounded hover:bg-white hover:text-green-500"
+            className="lg:text-lg text-sm font-semibold border md:px-4 md:py-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-white hover:text-green-500"
           >
             Login
           </Link>
