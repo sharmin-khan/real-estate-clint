@@ -18,9 +18,9 @@ const RequestedProperties = () => {
     enabled: !!user?.email,
   });
 
-  const handleUpdateStatus = async (id, status, propertyId) => {
+  const handleUpdateStatus = async (id, status) => {
     try {
-      await axiosSecure.patch(`/offers/status/${id}`, { status, propertyId });
+      await axiosSecure.patch(`/offers/status/${id}`, { status });
       refetch();
     } catch (error) {
       console.error("Status update failed:", error);
@@ -52,20 +52,20 @@ const RequestedProperties = () => {
                 <td className="py-2 px-2">{offer.propertyLocation}</td>
                 <td className="py-2 px-2">{offer.buyerName}</td>
                 <td className="py-2 px-2">{offer.buyerEmail}</td>
-                <td className="py-2 px-2">${offer.offerAmount}</td>
+                <td className="py-2 px-2">{offer.offerAmount}BDT</td>
                 <td className="py-2 px-2 capitalize">{offer.status}</td>
                 <td className="py-2 px-2 space-x-2">
                   {offer.status === "pending" && (
                     <>
                       <button
-                        onClick={() => handleUpdateStatus(offer._id, "accepted", offer.propertyId)}
-                        className="bg-green-500 text-white px-2 py-1 rounded"
+                        onClick={() => handleUpdateStatus(offer._id, "accepted")}
+                        className="bg-green-500 text-white px-2 py-1 rounded cursor-pointer"
                       >
                         Accept
                       </button>
                       <button
-                        onClick={() => handleUpdateStatus(offer._id, "rejected", offer.propertyId)}
-                        className="bg-red-500 text-white px-2 py-1 rounded"
+                        onClick={() => handleUpdateStatus(offer._id, "rejected")}
+                        className="bg-red-500 text-white px-2 py-1 rounded cursor-pointer"
                       >
                         Reject
                       </button>

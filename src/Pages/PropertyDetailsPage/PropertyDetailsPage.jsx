@@ -93,7 +93,7 @@ const PropertyDetailsPage = () => {
       <p className="mt-2"><strong>Location:</strong> {property.location}</p>
       <p><strong>Agent:</strong> {property.agentName}</p>
       <p><strong>Status:</strong> {property.verificationStatus}</p>
-      <p><strong>Price:</strong> ${property.priceMin} - ${property.priceMax}</p>
+      <p><strong>Price:</strong> {property.priceMin} BDT - {property.priceMax} BDT</p>
 
       <button
         onClick={handleAddToWishlist}

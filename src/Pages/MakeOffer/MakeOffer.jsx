@@ -82,7 +82,7 @@ const MakeOffer = () => {
             min={property.priceMin}
             max={property.priceMax}
             onChange={e => setAmount(e.target.value)}
-            placeholder={`Between $${property.priceMin} and $${property.priceMax}`}
+            placeholder={`Between ${property.priceMin}BDT and ${property.priceMax}BDT`}
             className="input input-bordered w-full"
             required
           />
