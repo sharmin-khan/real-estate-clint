@@ -4,6 +4,7 @@ import RootLayout from "../Layouts/RootLayout";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import PrivateRoute from "../routes/PrivateRoute";
 import RoleBasedRoute from "../routes/RoleBasedRoute"; // Import RoleBasedRoute
+import ErrorPage from "../component/ErrorPage/ErrorPage";
 
 
 import Home from "../Pages/Home/Home";
@@ -22,16 +23,17 @@ import PropertyBought from "../Dashboard/user/PropertyBought";
 import MyReviews from "../Dashboard/user/MyReviews";
 
 // Agent components
-import AddProperty from "../Dashboard/agent/AddProperty";
-import MyAddedProperties from "../Dashboard/agent/MyAddedProperties";
-import RequestedProperties from "../Dashboard/agent/RequestedProperties";
-import MySoldProperties from "../Dashboard/agent/MySoldProperties";
-import UpdateProperty from "../Dashboard/agent/UpdateProperty";
+import AddProperty from "../Dashboard/Agent/AddProperty";
+import MyAddedProperties from "../Dashboard/Agent/MyAddedProperties";
+import RequestedProperties from "../Dashboard/Agent/RequestedProperties";
+import MySoldProperties from "../Dashboard/Agent/MySoldProperties";
+import UpdateProperty from "../Dashboard/Agent/UpdateProperty";
 
 // Admin components
-import ManageProperties from "../Dashboard/admin/ManageProperties";
-import ManageUsers from "../Dashboard/admin/ManageUsers";
-import ManageReviews from "../Dashboard/admin/ManageReviews";
+import ManageProperties from "../Dashboard/Admin/ManageProperties";
+import ManageUsers from "../Dashboard/Admin/ManageUsers";
+import ManageReviews from "../Dashboard/Admin/ManageReviews";
+
 
 
 
@@ -43,6 +45,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
