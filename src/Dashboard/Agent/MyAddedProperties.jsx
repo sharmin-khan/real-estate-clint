@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 
 const MyAddedProperties = () => {
   const { user } = useContext(AuthContext);
@@ -40,7 +41,7 @@ const MyAddedProperties = () => {
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <div className="text-center my-10"><LoadingSpinner/></div>;
 
   return (
     <div className="max-w-4xl mx-auto p-4">
