@@ -8,7 +8,7 @@ const WishlistPage = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
 
-  const { data: wishlist = [], isLoading } = useQuery({
+  const { data: wishlist = [] } = useQuery({
     queryKey: ['wishlist', user?.email],
     queryFn: async () => {
       const res = await axios.get(`http://localhost:3000/wishlist/${user?.email}`);

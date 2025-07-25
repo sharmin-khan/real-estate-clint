@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useRole from "../../hooks/useRole";
+import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 
 
 const PropertyDetailsPage = () => {
@@ -12,6 +14,7 @@ const PropertyDetailsPage = () => {
   const { user } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [reviewText, setReviewText] = useState("");
+  const [role, roleLoading] = useRole(user?.email);
 
   // ✅ fetch property details
   const { data: property = {} } = useQuery({
@@ -85,6 +88,8 @@ const PropertyDetailsPage = () => {
     }
   };
 
+  if (roleLoading) return <div className="text-center mt-10"><LoadingSpinner /></div>;
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <img src={property.image} alt={property.title} className="w-full h-80 object-cover rounded mb-4" />
@@ -95,12 +100,15 @@ const PropertyDetailsPage = () => {
       <p><strong>Status:</strong> {property.verificationStatus}</p>
       <p><strong>Price:</strong> {property.priceMin} BDT - {property.priceMax} BDT</p>
 
-      <button
-        onClick={handleAddToWishlist}
-        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-      >
-        Add to Wishlist
-      </button>
+      {/* Wishlist button: Only for user role */}
+      {role === "user" && (
+        <button
+          onClick={handleAddToWishlist}
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+        >
+          Add to Wishlist
+        </button>
+      )}
 
       {/* ✅ Review Section */}
       <div className="mt-10">
@@ -119,13 +127,15 @@ const PropertyDetailsPage = () => {
         ))}
       </div>
 
-      {/* ✅ Add Review Button */}
-      <button
-        onClick={() => setShowModal(true)}
-        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      >
-        Add a Review
-      </button>
+      {/* Add Review Button: Only for user role */}
+      {role === "user" && (
+        <button
+          onClick={() => setShowModal(true)}
+          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Add a Review
+        </button>
+      )}
 
       {/* ✅ Review Modal */}
       {showModal && (
