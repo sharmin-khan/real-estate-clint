@@ -42,12 +42,6 @@ const Footer = () => {
             >
               Dashboard
             </Link>
-            <Link
-              to="/login"
-              className="lg:text-lg w-20 text-center font-semibold border px-4 py-2 bg-green-500 text-white rounded hover:bg-white hover:text-green-500"
-            >
-              Login
-            </Link>
           </div>
         </div>
 
