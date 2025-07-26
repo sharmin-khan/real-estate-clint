@@ -1,12 +1,11 @@
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/images/logo.avif";
-import { use } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext);
- 
+  const { user, logOut } = useContext(AuthContext);
 
   const navLinks = (
     <>
@@ -41,7 +40,7 @@ const Navbar = () => {
     logOut()
       .then(() => {
         console.log("User logged out");
-          Swal.fire({
+        Swal.fire({
           icon: "success",
           title: "Log out Successfully",
           text: "You have been logged out.",
@@ -71,7 +70,18 @@ const Navbar = () => {
         <ul className="menu menu-horizontal gap-2 px-1">{navLinks}</ul>
       </div>
 
-      <div className="navbar-end flex items-center gap-4">
+      {/* Right Side */}
+      <div className="navbar-end flex items-center gap-3">
+        {/* User image only on small devices, hamburger icon next to it */}
+        {user && (
+          <img
+            src={user.photoURL || "https://via.placeholder.com/40"}
+            alt={user.displayName || "User"}
+            title={user.displayName}
+            className="w-10 h-10 rounded-full border border-green-500 mr-1 md:hidden"
+          />
+        )}
+
         {/* Mobile dropdown */}
         <div className="dropdown dropdown-end md:hidden">
           <label tabIndex={0} className="btn btn-ghost">
@@ -95,36 +105,58 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             {navLinks}
+
+            {/* Login/Logout inside mobile dropdown */}
+            <li className="mt-2 border-t pt-2">
+              {user ? (
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left text-red-500 font-semibold hover:bg-red-100 rounded px-2 py-1"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="block w-full text-left font-semibold bg-green-500 text-white rounded px-2 py-1 hover:bg-green-600"
+                >
+                  Login
+                </Link>
+              )}
+            </li>
           </ul>
         </div>
 
-        {/* User info or login button */}
-        {user ? (
-          <div className="flex items-center gap-3">
-            <img
-              src={user.photoURL || "https://via.placeholder.com/40"}
-              alt={user.displayName || "User"}
-              className="w-10 h-10 rounded-full border border-green-500"
-              title={user.displayName}
-            />
-            <span className="hidden md:inline font-semibold text-green-700">
-              {user.displayName || "User"}
-            </span>
-            <button
-              onClick={handleLogout}
-              className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 md:px-4 md:py-2 px-2 py-1 rounded hover:bg-red-500 hover:text-white transition"
+        {/* Desktop user info and logout */}
+        <div className="hidden md:flex items-center gap-3">
+          {user && (
+            <>
+              <img
+                src={user.photoURL || "https://via.placeholder.com/40"}
+                alt={user.displayName || "User"}
+                className="w-10 h-10 rounded-full border border-green-500"
+                title={user.displayName}
+              />
+              <span className="font-semibold text-green-700">
+                {user.displayName || "User"}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 md:px-4 md:py-2 px-2 py-1 rounded hover:bg-red-500 hover:text-white transition"
+              >
+                Logout
+              </button>
+            </>
+          )}
+          {!user && (
+            <Link
+              to="/login"
+              className="lg:text-lg text-sm font-semibold border md:px-4 md:py-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-white hover:text-green-500"
             >
-              Logout
-            </button>
-          </div>
-        ) : (
-          <Link
-            to="/login"
-            className="lg:text-lg text-sm font-semibold border md:px-4 md:py-2 px-2 py-1 bg-green-500 text-white rounded hover:bg-white hover:text-green-500"
-          >
-            Login
-          </Link>
-        )}
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
