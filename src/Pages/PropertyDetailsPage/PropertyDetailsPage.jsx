@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext/AuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useRole from "../../hooks/useRole";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
-
+import axios from "axios"; 
 
 const PropertyDetailsPage = () => {
   const { id } = useParams();
@@ -16,7 +16,6 @@ const PropertyDetailsPage = () => {
   const [reviewText, setReviewText] = useState("");
   const [role, roleLoading] = useRole(user?.email);
 
-  // ✅ fetch property details
   const { data: property = {} } = useQuery({
     queryKey: ["property", id],
     queryFn: async () => {
@@ -25,7 +24,6 @@ const PropertyDetailsPage = () => {
     },
   });
 
-  // ✅ fetch reviews
   const { data: reviews = [], refetch } = useQuery({
     queryKey: ["reviews", id],
     queryFn: async () => {
@@ -34,7 +32,6 @@ const PropertyDetailsPage = () => {
     },
   });
 
-  // ✅ handle wishlist
   const handleAddToWishlist = async () => {
     const wishlistItem = {
       propertyId: id,
@@ -47,20 +44,39 @@ const PropertyDetailsPage = () => {
       email: user.email,
       priceMin: property.priceMin,
       priceMax: property.priceMax,
+      userEmail: user?.email
     };
 
     try {
-      const res = await axiosSecure.post("/wishlist", wishlistItem);
-      console.log("Wishlist add response:", res.data); // <-- Debug log
-      if (res.data.insertedId) {
-        Swal.fire("Success", "Added to wishlist!", "success");
+      const res = await axios.post("https://reak-estate-server.vercel.app/wishlist",wishlistItem )
+     
+
+      if (res.data?.message === "already exists") {
+        Swal.fire({
+          icon: "info",
+          title: "Already Added",
+          text: "This property is already in your wishlist!",
+          timer: 2000,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "Property added to wishlist!",
+          timer: 2000,
+          showConfirmButton: false,
+        });
       }
-    } catch {
-      Swal.fire("Error", "Something went wrong", "error");
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Something Went Wrong",
+        text: error.message,
+      });
     }
   };
 
-  // ✅ handle add review
   const handleAddReview = async () => {
     if (!reviewText.trim()) {
       return Swal.fire("Error", "Review cannot be empty", "error");
@@ -68,13 +84,13 @@ const PropertyDetailsPage = () => {
 
     const review = {
       propertyId: id,
-      propertyTitle: property.title, // add title
-      agentName: property.agentName, // add agent name
+      propertyTitle: property.title,
+      agentName: property.agentName,
       userEmail: user.email,
-      userName: user.displayName, // add reviewer name
-      userImage: user.photoURL, // add reviewer image
+      userName: user.displayName,
+      userImage: user.photoURL,
       comment: reviewText,
-      time: new Date(), // add review time
+      time: new Date(),
     };
 
     try {
@@ -101,7 +117,6 @@ const PropertyDetailsPage = () => {
       <p><strong>Status:</strong> {property.verificationStatus}</p>
       <p><strong>Price:</strong> {property.priceMin} BDT - {property.priceMax} BDT</p>
 
-      {/* Wishlist button: Only for user role */}
       {role === "user" && (
         <button
           onClick={handleAddToWishlist}
@@ -111,7 +126,6 @@ const PropertyDetailsPage = () => {
         </button>
       )}
 
-      {/* ✅ Review Section */}
       <div className="mt-10">
         <h3 className="text-xl font-semibold mb-4">Reviews</h3>
 
@@ -124,12 +138,10 @@ const PropertyDetailsPage = () => {
           >
             <p className="text-md text-gray-500 mt-1">By: {review.userName}</p>
             <p className="text-gray-800">{review.comment}</p>
-            
           </div>
         ))}
       </div>
 
-      {/* Add Review Button: Only for user role */}
       {role === "user" && (
         <button
           onClick={() => setShowModal(true)}
@@ -139,7 +151,6 @@ const PropertyDetailsPage = () => {
         </button>
       )}
 
-      {/* ✅ Review Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
