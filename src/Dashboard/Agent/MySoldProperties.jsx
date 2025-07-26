@@ -10,7 +10,8 @@ const MySoldProperties = () => {
   const { data: sold = [], isLoading } = useQuery({
     queryKey: ["sold-properties", user?.email],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/sold-properties/${user?.email}`);
+     const res = await axios.get(`http://localhost:3000/sold-properties?email=${user?.email}`);
+
       return res.data;
     },
     enabled: !!user?.email,
