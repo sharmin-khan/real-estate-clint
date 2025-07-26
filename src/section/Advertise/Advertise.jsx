@@ -7,7 +7,7 @@ const Advertise = () => {
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["advertisedProperties"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:3000/properties?verified=true");
+      const res = await fetch("https://reak-estate-server.vercel.app/properties?verified=true");
       return res.json();
     },
   });

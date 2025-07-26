@@ -6,7 +6,7 @@ const LatestReviews = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/reviews")
+    axios.get("https://reak-estate-server.vercel.app/reviews")
       .then(res => {
         const sorted = res.data.sort((a, b) => new Date(b.time) - new Date(a.time));
         setLatestReviews(sorted.slice(0, 4));

@@ -11,7 +11,7 @@ const WishlistPage = () => {
   const { data: wishlist = [] } = useQuery({
     queryKey: ['wishlist', user?.email],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/wishlist/${user?.email}`);
+      const res = await axios.get(`https://reak-estate-server.vercel.app/wishlist/${user?.email}`);
       return res.data;
     },
     enabled: !!user?.email,
@@ -21,7 +21,7 @@ const WishlistPage = () => {
 
   const handleRemove = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/wishlist/${id}`);
+      await axios.delete(`https://reak-estate-server.vercel.app/wishlist/${id}`);
       queryClient.invalidateQueries(['wishlist', user?.email]); 
     } catch (error) {
       console.error("Failed to remove wishlist item:", error);

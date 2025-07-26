@@ -18,7 +18,7 @@ const UpdateProperty = () => {
   const { data: property, isLoading } = useQuery({
     queryKey: ["property", id],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/properties/${id}`);
+      const res = await axios.get(`https://reak-estate-server.vercel.app/properties/${id}`);
       return res.data;
     },
     enabled: !!id,
@@ -64,7 +64,7 @@ const UpdateProperty = () => {
         priceMax: Number(data.priceMax),
         image: imageUrl,
       };
-      await axios.patch(`http://localhost:3000/properties/${id}`, updated);
+      await axios.patch(`https://reak-estate-server.vercel.app/properties/${id}`, updated);
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["my-properties", user?.email]);

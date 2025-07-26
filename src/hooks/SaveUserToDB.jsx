@@ -15,7 +15,7 @@ const SaveUserToDB = () => {
         role: "user", // Default role "user"
       };
 
-      axios.post("http://localhost:3000/users", userData)
+      axios.post("https://reak-estate-server.vercel.app/users", userData)
         .then(res => {
           console.log("User saved to DB:", res.data);
         })

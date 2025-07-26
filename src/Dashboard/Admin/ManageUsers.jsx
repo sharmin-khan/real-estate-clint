@@ -8,26 +8,26 @@ const ManageUsers = () => {
 
   // Fetch users
   useEffect(() => {
-    axios.get("http://localhost:3000/users").then((res) => {
+    axios.get("https://reak-estate-server.vercel.app/users").then((res) => {
       setUsers(res.data);
       setLoading(false);
     });
   }, []);
 
   const handleMakeAdmin = async (id) => {
-    await axios.patch(`http://localhost:3000/users/${id}/role`, { role: "admin" });
+    await axios.patch(`https://reak-estate-server.vercel.app/users/${id}/role`, { role: "admin" });
     setUsers((prev) => prev.map((u) => (u._id === id ? { ...u, role: "admin" } : u)));
   };
   const handleMakeAgent = async (id) => {
-    await axios.patch(`http://localhost:3000/users/${id}/role`, { role: "agent" });
+    await axios.patch(`https://reak-estate-server.vercel.app/users/${id}/role`, { role: "agent" });
     setUsers((prev) => prev.map((u) => (u._id === id ? { ...u, role: "agent" } : u)));
   };
   const handleMarkFraud = async (id) => {
-    await axios.patch(`http://localhost:3000/users/${id}/fraud`);
+    await axios.patch(`https://reak-estate-server.vercel.app/users/${id}/fraud`);
     setUsers((prev) => prev.map((u) => (u._id === id ? { ...u, status: "fraud" } : u)));
   };
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3000/users/${id}`);
+    await axios.delete(`https://reak-estate-server.vercel.app/users/${id}`);
     setUsers((prev) => prev.filter((u) => u._id !== id));
   };
 

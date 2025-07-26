@@ -16,7 +16,7 @@ const MyAddedProperties = () => {
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["my-properties", user?.email],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:3000/properties?agentEmail=${user?.email}`);
+      const res = await axios.get(`https://reak-estate-server.vercel.app/properties?agentEmail=${user?.email}`);
       return res.data;
     },
     enabled: !!user?.email,
@@ -24,7 +24,7 @@ const MyAddedProperties = () => {
 
   // Delete property mutation
   const deleteMutation = useMutation({
-    mutationFn: (id) => axios.delete(`http://localhost:3000/properties/${id}`),
+    mutationFn: (id) => axios.delete(`https://reak-estate-server.vercel.app/properties/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries(["my-properties", user?.email]);
       Swal.fire("Deleted!", "Property deleted.", "success");
@@ -33,7 +33,7 @@ const MyAddedProperties = () => {
 
   // Update property mutation
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }) => axios.patch(`http://localhost:3000/properties/${id}`, data),
+    mutationFn: ({ id, data }) => axios.patch(`https://reak-estate-server.vercel.app/properties/${id}`, data),
     onSuccess: () => {
       queryClient.invalidateQueries(["my-properties", user?.email]);
       setEditProperty(null);

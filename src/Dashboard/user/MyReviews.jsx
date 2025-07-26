@@ -11,7 +11,7 @@ const MyReviews = () => {
   const { data: reviews = [], isLoading } = useQuery({
     queryKey: ["myReviews", user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:3000/reviews?email=${user?.email}`);
+      const res = await fetch(`https://reak-estate-server.vercel.app/reviews?email=${user?.email}`);
       return res.json();
     },
     enabled: !!user?.email,
@@ -20,7 +20,7 @@ const MyReviews = () => {
   // Delete review mutation
   const deleteMutation = useMutation({
     mutationFn: async (id) => {
-      await fetch(`http://localhost:3000/reviews/${id}`, { method: "DELETE" });
+      await fetch(`https://reak-estate-server.vercel.app/reviews/${id}`, { method: "DELETE" });
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["myReviews", user?.email]);

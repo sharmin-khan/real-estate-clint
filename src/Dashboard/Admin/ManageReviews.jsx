@@ -7,7 +7,7 @@ const ManageReviews = () => {
 
   // Fetch all reviews
   useEffect(() => {
-    axios.get("http://localhost:3000/reviews").then((res) => {
+    axios.get("https://reak-estate-server.vercel.app/reviews").then((res) => {
       setReviews(res.data);
       setLoading(false);
     });
@@ -15,7 +15,7 @@ const ManageReviews = () => {
 
   // Delete review
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3000/reviews/${id}`);
+    await axios.delete(`https://reak-estate-server.vercel.app/reviews/${id}`);
     setReviews((prev) => prev.filter((r) => r._id !== id));
   };
 

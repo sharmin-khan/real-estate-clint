@@ -9,7 +9,7 @@ const useRole = (email) => {
     if (email) {
        console.log("Checking role for:", email);
       axios
-        .get(`http://localhost:3000/users/role/${email}`)
+        .get(`https://reak-estate-server.vercel.app/users/role/${email}`)
         .then((res) => {
            console.log("Role response:", res.data);
           setRole(res.data.role);

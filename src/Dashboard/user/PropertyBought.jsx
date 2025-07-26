@@ -9,7 +9,7 @@ const PropertyBought = () => {
   const { data: offers = [], isLoading } = useQuery({
     queryKey: ["offers", user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:3000/offers?email=${user?.email}`);
+      const res = await fetch(`https://reak-estate-server.vercel.app/offers?email=${user?.email}`);
       return res.json();
     },
     enabled: !!user?.email,

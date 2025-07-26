@@ -7,7 +7,7 @@ const AllProperties = () => {
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["properties"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:3000/properties");
+      const res = await axios.get("https://reak-estate-server.vercel.app/properties");
       return res.data;
     },
   });

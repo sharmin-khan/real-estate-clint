@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const fetchProperties = async () => {
-  const res = await axios.get("http://localhost:3000/properties");
+  const res = await axios.get("https://reak-estate-server.vercel.app/properties");
   return res.data;
 };
 
@@ -16,7 +16,7 @@ const ManageProperties = () => {
   });
 
   const verifyMutation = useMutation({
-    mutationFn: (id) => axios.patch(`http://localhost:3000/properties/${id}/verify`),
+    mutationFn: (id) => axios.patch(`https://reak-estate-server.vercel.app/properties/${id}/verify`),
     onSuccess: () => {
       queryClient.invalidateQueries(["properties"]);
       Swal.fire("Success", "Property verified!", "success");
@@ -24,7 +24,7 @@ const ManageProperties = () => {
   });
 
   const rejectMutation = useMutation({
-    mutationFn: (id) => axios.patch(`http://localhost:3000/properties/${id}/reject`),
+    mutationFn: (id) => axios.patch(`https://reak-estate-server.vercel.app/properties/${id}/reject`),
     onSuccess: () => {
       queryClient.invalidateQueries(["properties"]);
       Swal.fire("Success", "Property rejected!", "success");

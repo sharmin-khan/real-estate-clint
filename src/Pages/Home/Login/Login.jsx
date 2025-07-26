@@ -39,30 +39,48 @@ const Login = () => {
         });
       });
   };
-  //Google Sign In
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        console.log("Google Sign In successful:", result.user);
-        Swal.fire({
-          icon: "success",
-          title: "Google Log In Successfully",
-          text: "Welcome to your account!",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-         navigate(from, { replace: true });
-         
+  // Google Sign In
+ const handleGoogleSignIn = () => {
+  signInWithGoogle()
+    .then((result) => {
+      const loggedUser = result.user;
+
+      const savedUser = {
+        name: loggedUser.displayName,
+        email: loggedUser.email,
+        role: "user",
+        status: "active"
+      };
+
+      // Save to database
+      fetch("https://real-estate-server-smoky.vercel.app/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(savedUser),
       })
-      .catch((error) => {
-        console.error("Google Log In Error:", error.message);
-        Swal.fire({
-          icon: "error",
-          title: "Google Log In Failed",
-          text: error.message,
+        .then((res) => res.json())
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Google Log In Successfully",
+            text: "Welcome to your account!",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+          navigate(from, { replace: true });
         });
+    })
+    .catch((error) => {
+      console.error("Google Log In Error:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Google Log In Failed",
+        text: error.message,
       });
-  };
+    });
+};
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gray-50 p-6">

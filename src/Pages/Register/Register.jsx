@@ -58,7 +58,7 @@ const Register = () => {
             // Debug: log the saveUser object
             console.log('saveUser object:', saveUser);
 
-            axios.post("http://localhost:3000/users", saveUser)
+            axios.post("https://reak-estate-server.vercel.app/users", saveUser)
               .then(() => {
                 Swal.fire({
                   icon: "success",
@@ -90,29 +90,51 @@ const Register = () => {
       });
   };
 
-  //Google Sign In
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        console.log("Google Register successful:", result.user);
-        Swal.fire({
-          icon: "success",
-          title: "Google Register Successfully",
-          text: "Welcome to your account!",
-          timer: 1500,
-          showConfirmButton: false,
+ // Google Sign In
+const handleGoogleSignIn = () => {
+  signInWithGoogle()
+    .then((result) => {
+      const loggedUser = result.user;
+      console.log("Google Register successful:", loggedUser);
+
+      const saveUser = {
+        name: loggedUser.displayName,
+        email: loggedUser.email,
+        photoURL: loggedUser.photoURL,
+        role: "user", // Default role
+        createdAt: new Date(),
+      };
+
+      // Save user to database
+      axios.post("https://reak-estate-server.vercel.app/users", saveUser)
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Google Register Successfully",
+            text: "Welcome to your account!",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+          navigate(from, { replace: true });
+        })
+        .catch((error) => {
+          console.error("Failed to save user:", error.message);
+          Swal.fire({
+            icon: "error",
+            title: "User Save Failed",
+            text: error.message,
+          });
         });
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        console.error("Google register Error:", error.message);
-        Swal.fire({
-          icon: "error",
-          title: "Google Register Failed",
-          text: error.message,
-        });
+    })
+    .catch((error) => {
+      console.error("Google register Error:", error.message);
+      Swal.fire({
+        icon: "error",
+        title: "Google Register Failed",
+        text: error.message,
       });
-  };
+    });
+};
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 bg-base-200">

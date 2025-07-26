@@ -43,7 +43,7 @@ const AddProperty = () => {
         priceMax: Number(data.priceMax),
         verificationStatus: "pending"
       };
-      await axios.post("http://localhost:3000/properties", propertyData);
+      await axios.post("https://reak-estate-server.vercel.app/properties", propertyData);
       Swal.fire("Success", "Property added successfully!", "success");
       reset();
     } catch {
