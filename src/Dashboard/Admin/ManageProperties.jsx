@@ -31,12 +31,14 @@ const ManageProperties = () => {
     },
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p className="text-center my-10">Loading...</p>;
 
   return (
     <div className="w-full max-w-full px-2 md:px-6 lg:px-12 mx-auto">
       <h2 className="text-2xl font-bold mb-4 text-center md:text-left">Manage Properties</h2>
-      <div className="overflow-x-auto rounded-lg shadow">
+
+      {/* Table view for md and up */}
+      <div className="hidden md:block overflow-x-auto rounded-lg shadow">
         <table className="min-w-[700px] w-full text-sm md:text-base">
           <thead className="bg-gray-100">
             <tr>
@@ -100,6 +102,60 @@ const ManageProperties = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Card view for mobile */}
+      <div className="lg:hidden space-y-4">
+        {properties.map((property) => (
+          <div
+            key={property._id}
+            className="border rounded p-4 shadow bg-white"
+          >
+            <h3 className="font-bold text-lg mb-2">{property.title}</h3>
+            <p><strong>Location:</strong> {property.location}</p>
+            <p><strong>Agent:</strong> {property.agentName}</p>
+            <p><strong>Email:</strong> {property.agentEmail}</p>
+            <p><strong>Price:</strong> {property.priceMin} - {property.priceMax} BDT</p>
+            <p>
+              <strong>Status:</strong>{" "}
+              <span
+                className={
+                  property.verificationStatus === "verified"
+                    ? "text-green-600"
+                    : property.verificationStatus === "rejected"
+                    ? "text-red-600"
+                    : "text-yellow-600"
+                }
+              >
+                {property.verificationStatus}
+              </span>
+            </p>
+            <div className="flex flex-col gap-2 mt-3">
+              {property.verificationStatus === "pending" && (
+                <>
+                  <button
+                    className="btn btn-sm btn-success"
+                    onClick={() => verifyMutation.mutate(property._id)}
+                  >
+                    Verify
+                  </button>
+                  <button
+                    className="btn btn-sm btn-error"
+                    onClick={() => rejectMutation.mutate(property._id)}
+                  >
+                    Reject
+                  </button>
+                </>
+              )}
+              {property.verificationStatus === "verified" && (
+                <span className="text-green-600 font-semibold">Verified</span>
+              )}
+              {property.verificationStatus === "rejected" && (
+                <span className="text-red-600 font-semibold">Rejected</span>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

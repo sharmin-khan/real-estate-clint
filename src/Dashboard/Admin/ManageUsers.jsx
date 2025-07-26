@@ -8,7 +8,7 @@ const ManageUsers = () => {
 
   // Fetch users
   useEffect(() => {
-    axios.get("http://localhost:3000/users").then(res => {
+    axios.get("http://localhost:3000/users").then((res) => {
       setUsers(res.data);
       setLoading(false);
     });
@@ -16,35 +16,42 @@ const ManageUsers = () => {
 
   const handleMakeAdmin = async (id) => {
     await axios.patch(`http://localhost:3000/users/${id}/role`, { role: "admin" });
-    setUsers(prev => prev.map(u => u._id === id ? { ...u, role: "admin" } : u));
+    setUsers((prev) => prev.map((u) => (u._id === id ? { ...u, role: "admin" } : u)));
   };
   const handleMakeAgent = async (id) => {
     await axios.patch(`http://localhost:3000/users/${id}/role`, { role: "agent" });
-    setUsers(prev => prev.map(u => u._id === id ? { ...u, role: "agent" } : u));
+    setUsers((prev) => prev.map((u) => (u._id === id ? { ...u, role: "agent" } : u)));
   };
   const handleMarkFraud = async (id) => {
     await axios.patch(`http://localhost:3000/users/${id}/fraud`);
-    setUsers(prev => prev.map(u => u._id === id ? { ...u, status: "fraud" } : u));
+    setUsers((prev) => prev.map((u) => (u._id === id ? { ...u, status: "fraud" } : u)));
   };
   const handleDelete = async (id) => {
     await axios.delete(`http://localhost:3000/users/${id}`);
-    setUsers(prev => prev.filter(u => u._id !== id));
+    setUsers((prev) => prev.filter((u) => u._id !== id));
   };
 
-  if (loading) return <div className="text-center mt-10"><LoadingSpinner /></div>;
+  if (loading)
+    return (
+      <div className="text-center mt-10">
+        <LoadingSpinner />
+      </div>
+    );
 
   return (
     <div className="w-full max-w-5xl mx-auto px-2 md:px-6 lg:px-12">
       <h2 className="text-2xl font-bold mb-4 text-center md:text-left">Manage Users</h2>
-      <div className="overflow-x-auto rounded-lg shadow">
-        <table className="min-w-[700px] w-full text-sm md:text-base">
+
+      {/* Table view for md and up */}
+      <div className="hidden md:block overflow-x-auto rounded-lg shadow">
+        <table className="min-w-full w-full text-sm md:text-base table-auto">
           <thead className="bg-gray-100">
             <tr>
-              <th className="py-2 px-2">Name</th>
-              <th className="py-2 px-2">Email</th>
-              <th className="py-2 px-2">Role</th>
-              <th className="py-2 px-2">Status</th>
-              <th className="py-2 px-2">Action</th>
+              <th className="py-2 px-2 text-left">Name</th>
+              <th className="py-2 px-2 text-left">Email</th>
+              <th className="py-2 px-2 text-left">Role</th>
+              <th className="py-2 px-2 text-left">Status</th>
+              <th className="py-2 px-2 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -64,7 +71,7 @@ const ManageUsers = () => {
                   {user.status === "fraud" ? (
                     <span className="text-red-500 font-bold">Fraud</span>
                   ) : (
-                    <div className="flex flex-col md:flex-row gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {user.role !== "admin" && (
                         <button
                           className="btn btn-xs btn-success"
@@ -102,6 +109,75 @@ const ManageUsers = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Card view for mobile (sm) */}
+      <div className="md:hidden space-y-4">
+        {users.map((user) => (
+          <div
+            key={user._id}
+            className="border border-gray-300 rounded p-4 shadow-sm bg-white"
+          >
+            <p>
+              <span className="font-semibold">Name: </span>
+              {user.name}
+            </p>
+            <p>
+              <span className="font-semibold">Email: </span>
+              {user.email}
+            </p>
+            <p>
+              <span className="font-semibold">Role: </span>
+              <span className="capitalize">{user.role}</span>
+            </p>
+            <p>
+              <span className="font-semibold">Status: </span>
+              {user.status === "fraud" ? (
+                <span className="text-red-600 font-semibold">Fraud</span>
+              ) : (
+                <span className="text-green-600">Active</span>
+              )}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {user.status === "fraud" ? (
+                <span className="text-red-500 font-bold">Fraud</span>
+              ) : (
+                <>
+                  {user.role !== "admin" && (
+                    <button
+                      className="btn btn-xs btn-success"
+                      onClick={() => handleMakeAdmin(user._id)}
+                    >
+                      Make Admin
+                    </button>
+                  )}
+                  {user.role !== "agent" && (
+                    <button
+                      className="btn btn-xs btn-info"
+                      onClick={() => handleMakeAgent(user._id)}
+                    >
+                      Make Agent
+                    </button>
+                  )}
+                  {user.role === "agent" && (
+                    <button
+                      className="btn btn-xs btn-warning"
+                      onClick={() => handleMarkFraud(user._id)}
+                    >
+                      Mark as Fraud
+                    </button>
+                  )}
+                  <button
+                    className="btn btn-xs btn-error"
+                    onClick={() => handleDelete(user._id)}
+                  >
+                    Delete User
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
