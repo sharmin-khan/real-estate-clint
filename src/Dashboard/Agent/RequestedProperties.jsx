@@ -1,17 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const RequestedProperties = () => {
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
 
   const { data: offers = [], isLoading, refetch } = useQuery({
     queryKey: ["offers", user?.email],
+    
     queryFn: async () => {
-      const res = await axiosSecure.get(`/offers/agent/${user?.email}`);
+      const res = await axiosSecure.get(`/offers?email=${user.email}`);
       return res.data;
     },
     enabled: !!user?.email,

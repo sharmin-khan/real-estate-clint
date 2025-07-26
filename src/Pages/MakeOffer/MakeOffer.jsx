@@ -7,6 +7,9 @@ import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 import useRole from "../../hooks/useRole";
 
 const MakeOffer = () => {
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
   const { propertyId } = useParams();
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
@@ -107,7 +110,7 @@ const MakeOffer = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 font-semibold mt-4"
+          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-500 font-semibold mt-4"
         >
           Offer
         </button>
