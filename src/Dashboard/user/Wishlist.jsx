@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Wishlist = ({ wishlist = [], onRemove }) => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <div className="p-4 sm:p-6 max-w-7xl mx-auto">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">

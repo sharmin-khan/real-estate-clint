@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 
 const MyAddedProperties = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const { user } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const [editProperty, setEditProperty] = useState(null);

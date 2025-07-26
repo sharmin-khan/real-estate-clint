@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 import axios from "axios";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
+import { useEffect } from "react";
 
 const AllProperties = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["properties"],
     queryFn: async () => {
