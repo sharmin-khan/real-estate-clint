@@ -46,14 +46,19 @@ const AllProperties = () => {
               <span className="font-medium">{property.agentName}</span>
             </div>
 
-            <p className="text-sm">
-              <strong>Status:</strong>{" "}
-              {property.verificationStatus ? (
-                <span className="text-green-600 font-semibold">Verified</span>
-              ) : (
-                <span className="text-red-500 font-semibold">Not Verified</span>
-              )}
-            </p>
+           <p className="text-sm">
+  <strong>Status:</strong>{" "}
+  {property.verificationStatus === "verified" && (
+    <span className="text-green-600 font-semibold">Verified</span>
+  )}
+  {property.verificationStatus === "pending" && (
+    <span className="text-yellow-500 font-semibold">Pending</span>
+  )}
+  {property.verificationStatus === "rejected" && (
+    <span className="text-red-500 font-semibold">Rejected</span>
+  )}
+</p>
+
 
             <p className="text-sm">
               <strong>Price:</strong> {property.priceMin}  - 
