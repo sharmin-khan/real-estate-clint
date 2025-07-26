@@ -10,6 +10,8 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  console.log("From path:", from);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -106,6 +108,7 @@ const Login = () => {
             <input
               type="email"
               id="email"
+               name="email"
               placeholder="you@example.com"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required
@@ -122,6 +125,7 @@ const Login = () => {
             <input
               type="password"
               id="password"
+               name="password" 
               placeholder="Enter your password"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               required

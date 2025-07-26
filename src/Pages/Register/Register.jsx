@@ -13,17 +13,32 @@ const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const imgbbKey = import.meta.env.VITE_IMGBB_API_KEY; // imgbb api key
 
-  const handleRegister = (e) => {
+  // Image upload to imgbb
+  const handleImageUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${imgbbKey}`,
+      formData
+    );
+
+    if (res.data.success) {
+      return res.data.data.url;
+    } else {
+      throw new Error("Image upload failed");
+    }
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const photo = form.photo.value;
+    const photoFile = form.photo.files[0]; // file from input
     const email = form.email.value;
     const password = form.password.value;
-
-    // Debug: log the name value
-    console.log('Register form name value:', name);
 
     // Password validation
     if (password.length < 6) {
@@ -37,114 +52,103 @@ const Register = () => {
     }
 
     setError("");
-    console.log("Registering user:", { name, photo, email, password });
 
-    //Create User with Firebase
-    createUser(email, password)
+    try {
+      // Upload photo to imgbb
+      const photoURL = await handleImageUpload(photoFile);
+
+      // Create user in Firebase
+      const result = await createUser(email, password);
+
+      // Update Firebase profile with name and photoURL
+      await updateProfile(result.user, {
+        displayName: name,
+        photoURL: photoURL,
+      });
+
+      // Save user info in backend
+      const saveUser = {
+        name,
+        email,
+        role: "user",
+        photoURL,
+        createdAt: new Date(),
+      };
+
+      await axios.post("https://reak-estate-server.vercel.app/users", saveUser);
+
+      Swal.fire({
+        icon: "success",
+        title: "Register Successfully",
+        text: "Your account has been created.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      form.reset();
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.error("Register Error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Register Failed",
+        text: error.message,
+      });
+    }
+  };
+
+  // Google Sign In (unchanged)
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
       .then((result) => {
-        // Update Firebase profile with name and photo
-        updateProfile(result.user, {
-          displayName: name,
-          photoURL: photo
-        }).then(() => {
-            // Save user to backend DB
-            const saveUser = {
-              name: name,
-              email: email,
-              role: "user",  
-              photoURL: photo,
-              createdAt: new Date(),
-            };
-            // Debug: log the saveUser object
-            console.log('saveUser object:', saveUser);
+        const loggedUser = result.user;
+        console.log("Google Register successful:", loggedUser);
 
-            axios.post("https://reak-estate-server.vercel.app/users", saveUser)
-              .then(() => {
-                Swal.fire({
-                  icon: "success",
-                  title: "Register Successfully",
-                  text: "Your account has been created.",
-                  timer: 1500,
-                  showConfirmButton: false,
-                });
-                form.reset();
-                navigate(from, { replace: true });
-              })
-              .catch((err) => {
-                console.error("Save user failed:", err);
-                Swal.fire({
-                  icon: "error",
-                  title: "Failed to save user data",
-                  text: err.message,
-                });
-              });
-        });
+        const saveUser = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+          photoURL: loggedUser.photoURL,
+          role: "user", // Default role
+          createdAt: new Date(),
+        };
+
+        // Save user to database
+        axios
+          .post("https://reak-estate-server.vercel.app/users", saveUser)
+          .then(() => {
+            Swal.fire({
+              icon: "success",
+              title: "Google Register Successfully",
+              text: "Welcome to your account!",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+            navigate(from, { replace: true });
+          })
+          .catch((error) => {
+            console.error("Failed to save user:", error.message);
+            Swal.fire({
+              icon: "error",
+              title: "User Save Failed",
+              text: error.message,
+            });
+          });
       })
       .catch((error) => {
-        console.error("Register Error:", error.message);
+        console.error("Google register Error:", error.message);
         Swal.fire({
           icon: "error",
-          title: "Register Failed",
+          title: "Google Register Failed",
           text: error.message,
         });
       });
   };
 
- // Google Sign In
-const handleGoogleSignIn = () => {
-  signInWithGoogle()
-    .then((result) => {
-      const loggedUser = result.user;
-      console.log("Google Register successful:", loggedUser);
-
-      const saveUser = {
-        name: loggedUser.displayName,
-        email: loggedUser.email,
-        photoURL: loggedUser.photoURL,
-        role: "user", // Default role
-        createdAt: new Date(),
-      };
-
-      // Save user to database
-      axios.post("https://reak-estate-server.vercel.app/users", saveUser)
-        .then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "Google Register Successfully",
-            text: "Welcome to your account!",
-            timer: 1500,
-            showConfirmButton: false,
-          });
-          navigate(from, { replace: true });
-        })
-        .catch((error) => {
-          console.error("Failed to save user:", error.message);
-          Swal.fire({
-            icon: "error",
-            title: "User Save Failed",
-            text: error.message,
-          });
-        });
-    })
-    .catch((error) => {
-      console.error("Google register Error:", error.message);
-      Swal.fire({
-        icon: "error",
-        title: "Google Register Failed",
-        text: error.message,
-      });
-    });
-};
-
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 bg-base-200">
       {/* Left Animation */}
       <div className="w-full md:w-1/2 hidden lg:flex justify-center">
-        <Lottie
-          animationData={registerAnimation}
-          loop={true}
-          className="w-96"
-        />
+        <Lottie animationData={registerAnimation} loop={true} className="w-96" />
       </div>
 
       {/* Right Form */}
@@ -154,10 +158,7 @@ const handleGoogleSignIn = () => {
         </h2>
 
         <form onSubmit={handleRegister} className="space-y-4">
-          <label
-            htmlFor="name"
-            className="block text-gray-700 font-semibold mb-2"
-          >
+          <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
             Your Name
           </label>
           <input
@@ -167,24 +168,19 @@ const handleGoogleSignIn = () => {
             className="input input-bordered w-full"
             required
           />
-          <label
-            htmlFor="photo url"
-            className="block text-gray-700 font-semibold mb-2"
-          >
-            Photo URL
+
+          <label htmlFor="photo" className="block text-gray-700 font-semibold mb-2">
+            Upload Photo
           </label>
           <input
-            type="text"
+            type="file"
             name="photo"
-            placeholder="Photo URL"
+            accept="image/*"
             className="input input-bordered w-full"
             required
           />
 
-          <label
-            htmlFor="email"
-            className="block text-gray-700 font-semibold mb-2"
-          >
+          <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">
             Email
           </label>
           <input
@@ -194,10 +190,8 @@ const handleGoogleSignIn = () => {
             className="input input-bordered w-full"
             required
           />
-          <label
-            htmlFor="password"
-            className="block text-gray-700 font-semibold mb-2"
-          >
+
+          <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">
             Password
           </label>
           <input
@@ -221,7 +215,7 @@ const handleGoogleSignIn = () => {
               type="button"
               className="btn bg-white text-black border-[#e5e5e5]"
             >
-               <svg
+              <svg
                 aria-label="Google logo"
                 width="16"
                 height="16"
@@ -255,10 +249,7 @@ const handleGoogleSignIn = () => {
 
         <p className="text-sm text-center">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-green-600 font-medium hover:underline"
-          >
+          <Link to="/login" className="text-green-600 font-medium hover:underline">
             Login
           </Link>
         </p>
