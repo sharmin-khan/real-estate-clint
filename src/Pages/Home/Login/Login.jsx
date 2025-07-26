@@ -55,7 +55,7 @@ const Login = () => {
       };
 
       // Save to database
-      fetch("https://real-estate-server-smoky.vercel.app/users", {
+   fetch("https://reak-estate-server.vercel.app/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
