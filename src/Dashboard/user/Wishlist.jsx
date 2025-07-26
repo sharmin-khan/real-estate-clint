@@ -64,7 +64,7 @@ const Wishlist = ({ wishlist = [], onRemove }) => {
                     to={`/make-offer/${item.propertyId || item._id}`}
                     className="flex-1"
                   >
-                    <button className="w-full bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 transition text-sm sm:text-base">
+                    <button className="w-full bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 transition text-sm sm:text-base cursor-pointer">
                       Make an Offer
                     </button>
                   </Link>
@@ -85,7 +85,7 @@ const Wishlist = ({ wishlist = [], onRemove }) => {
                         }
                       });
                     }}
-                    className="flex-1 bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 transition text-sm sm:text-base"
+                    className="flex-1 bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 transition text-sm sm:text-base cursor-pointer"
                   >
                     Remove
                   </button>

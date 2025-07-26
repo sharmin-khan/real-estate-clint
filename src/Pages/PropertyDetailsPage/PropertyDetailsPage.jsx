@@ -92,6 +92,7 @@ const PropertyDetailsPage = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-4 text-center md:text-left">Property Details</h1>
       <img src={property.image} alt={property.title} className="w-full h-80 object-cover rounded mb-4" />
       <h2 className="text-3xl font-bold">{property.title}</h2>
       <p className="text-gray-600">{property.description}</p>
@@ -104,7 +105,7 @@ const PropertyDetailsPage = () => {
       {role === "user" && (
         <button
           onClick={handleAddToWishlist}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="bg-green-500 text-white px-4 py-2 mt-3 rounded hover:bg-green-600 cursor-pointer"
         >
           Add to Wishlist
         </button>
@@ -121,8 +122,9 @@ const PropertyDetailsPage = () => {
             key={review._id}
             className="bg-gray-100 rounded p-3 mb-2 shadow-sm"
           >
+            <p className="text-md text-gray-500 mt-1">By: {review.userName}</p>
             <p className="text-gray-800">{review.comment}</p>
-            <p className="text-xs text-gray-500 mt-1">By: {review.userEmail}</p>
+            
           </div>
         ))}
       </div>
@@ -131,7 +133,7 @@ const PropertyDetailsPage = () => {
       {role === "user" && (
         <button
           onClick={() => setShowModal(true)}
-          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer"
         >
           Add a Review
         </button>
@@ -139,7 +141,7 @@ const PropertyDetailsPage = () => {
 
       {/* ✅ Review Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded shadow-lg w-full max-w-md">
             <h3 className="text-lg font-bold mb-2">Write your review</h3>
             <textarea
