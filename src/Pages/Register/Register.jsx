@@ -5,7 +5,7 @@ import registerAnimation from "../../assets/images/register.json";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { updateProfile, reload } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { createUser, signInWithGoogle } = React.useContext(AuthContext);
@@ -47,8 +47,6 @@ const Register = () => {
           displayName: name,
           photoURL: photo
         }).then(() => {
-          // Force reload user info from Firebase
-          reload(result.user).then(() => {
             // Save user to backend DB
             const saveUser = {
               name: name,
@@ -80,7 +78,6 @@ const Register = () => {
                   text: err.message,
                 });
               });
-          });
         });
       })
       .catch((error) => {

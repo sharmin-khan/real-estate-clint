@@ -7,7 +7,7 @@ import SaveUserToDB from "../hooks/SaveUserToDB";
 const RootLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <SaveUserToDB /> 
+      {/* <SaveUserToDB />  */}
       <Navbar />
       <main className="flex-grow">
         <Outlet />
