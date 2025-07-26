@@ -19,7 +19,9 @@ const MyAddedProperties = () => {
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["my-properties", user?.email],
     queryFn: async () => {
-      const res = await axios.get(`https://reak-estate-server.vercel.app/properties?agentEmail=${user?.email}`);
+      const res = await axios.get(
+        `https://reak-estate-server.vercel.app/properties?agentEmail=${user?.email}`
+      );
       return res.data;
     },
     enabled: !!user?.email,
@@ -27,7 +29,8 @@ const MyAddedProperties = () => {
 
   // Delete property mutation
   const deleteMutation = useMutation({
-    mutationFn: (id) => axios.delete(`https://reak-estate-server.vercel.app/properties/${id}`),
+    mutationFn: (id) =>
+      axios.delete(`https://reak-estate-server.vercel.app/properties/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries(["my-properties", user?.email]);
       Swal.fire("Deleted!", "Property deleted.", "success");
@@ -36,7 +39,11 @@ const MyAddedProperties = () => {
 
   // Update property mutation
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }) => axios.patch(`https://reak-estate-server.vercel.app/properties/${id}`, data),
+    mutationFn: ({ id, data }) =>
+      axios.patch(
+        `https://reak-estate-server.vercel.app/properties/${id}`,
+        data
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries(["my-properties", user?.email]);
       setEditProperty(null);
@@ -44,14 +51,22 @@ const MyAddedProperties = () => {
     },
   });
 
-  if (isLoading) return <div className="text-center my-10"><LoadingSpinner/></div>;
+  if (isLoading)
+    return (
+      <div className="text-center my-10">
+        <LoadingSpinner />
+      </div>
+    );
 
   return (
     <div className="max-w-4xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">My Added Properties</h2>
       <div className="grid md:grid-cols-2 gap-6">
         {properties.map((property) => (
-          <div key={property._id} className="bg-white rounded shadow p-4 flex flex-col">
+          <div
+            key={property._id}
+            className="bg-white rounded shadow p-4 flex flex-col"
+          >
             <img
               src={property.image}
               alt={property.title}
@@ -61,14 +76,18 @@ const MyAddedProperties = () => {
             <p className="text-gray-600">{property.location}</p>
             <div className="flex items-center gap-2 mt-1">
               <img
-                src={property.agentImage || "https://i.ibb.co/8j6c9b6/default-user.png"}
+                src={
+                  property.agentImage ||
+                  "https://i.ibb.co/8j6c9b6/default-user.png"
+                }
                 alt="Agent"
                 className="w-8 h-8 rounded-full"
               />
               <span className="text-sm">{property.agentName}</span>
             </div>
             <p className="mt-1">
-              <span className="font-semibold">Price:</span> {property.priceMin} - {property.priceMax} BDT
+              <span className="font-semibold">Price:</span> {property.priceMin}{" "}
+              - {property.priceMax} BDT
             </p>
             <p>
               <span className="font-semibold">Status:</span>{" "}
@@ -88,7 +107,9 @@ const MyAddedProperties = () => {
               {property.verificationStatus !== "rejected" && (
                 <button
                   className="btn btn-xs btn-info"
-                  onClick={() => navigate(`/dashboard/update-property/${property._id}`)}
+                  onClick={() =>
+                    navigate(`/dashboard/update-property/${property._id}`)
+                  }
                 >
                   Update
                 </button>
@@ -122,7 +143,7 @@ const MyAddedProperties = () => {
           <div className="bg-white p-6 rounded shadow max-w-md w-full">
             <h3 className="text-lg font-bold mb-2">Update Property</h3>
             <form
-              onSubmit={e => {
+              onSubmit={(e) => {
                 e.preventDefault();
                 const form = e.target;
                 const updated = {
