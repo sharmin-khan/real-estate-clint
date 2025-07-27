@@ -12,7 +12,7 @@ const AgentProfile = () => {
 
   return (
     <div className="max-w-md mx-auto bg-white shadow-lg p-6 rounded-lg mt-4">
-      <h2 className="text-2xl font-bold mb-4 text-center">Agent Profile</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">My Profile</h2>
       <div className="flex flex-col items-center">
         <img
           src={user?.photoURL || "https://i.ibb.co/8j6c9b6/default-user.png"}
