@@ -17,7 +17,10 @@ const AgentProfile = () => {
         <img
           src={user?.photoURL || "https://i.ibb.co/8j6c9b6/default-user.png"}
           alt="Agent"
-          className="w-24 h-24 rounded-full object-cover mb-4"
+          className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-green-500"
+          onError={(e) => {
+            e.target.src = "https://i.ibb.co/8j6c9b6/default-user.png";
+          }}
         />
         <p className="text-lg font-semibold">Name: {user?.displayName || user?.name || "N/A"}</p>
         <p className="text-gray-600">Email: {user?.email}</p>

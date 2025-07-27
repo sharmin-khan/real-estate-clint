@@ -39,6 +39,7 @@ const AddProperty = () => {
         image: imageUrl,
         agentName: user?.displayName || user?.name,
         agentEmail: user?.email,
+        agentImage: user?.photoURL || "https://i.ibb.co/8j6c9b6/default-user.png",
         priceMin: Number(data.priceMin),
         priceMax: Number(data.priceMax),
         verificationStatus: "pending"

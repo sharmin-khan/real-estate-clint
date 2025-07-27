@@ -63,6 +63,7 @@ const UpdateProperty = () => {
         priceMin: Number(data.priceMin),
         priceMax: Number(data.priceMax),
         image: imageUrl,
+        agentImage: user?.photoURL || property.agentImage || "https://i.ibb.co/8j6c9b6/default-user.png",
       };
       await axios.patch(`https://reak-estate-server.vercel.app/properties/${id}`, updated);
     },

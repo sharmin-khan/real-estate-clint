@@ -80,12 +80,13 @@ const MyAddedProperties = () => {
               <img
                 src={
                   property.agentImage ||
+                  user?.photoURL ||
                   "https://i.ibb.co/8j6c9b6/default-user.png"
                 }
                 alt="Agent"
-                className="w-8 h-8 rounded-full"
+                className="w-8 h-8 rounded-full object-cover border-2 border-green-500"
               />
-              <span className="text-sm">{property.agentName}</span>
+              <span className="text-sm font-medium">{property.agentName}</span>
             </div>
             <p className="mt-1">
               <span className="font-semibold">Price:</span> {property.priceMin}{" "}
