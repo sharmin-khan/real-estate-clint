@@ -37,10 +37,13 @@ const PropertyBought = () => {
               <p className="text-gray-600">Agent: {offer.agentName}</p>
               <p className="text-gray-600">Offered Amount: {offer.offerAmount} BDT</p>
               <p className="text-gray-600">Status: <span className="font-bold capitalize">{offer.status}</span></p>
-              {offer.status === "accepted" && (
+              {offer.status === "accepted" && offer._id && (
                 <Link to={`/payment/${offer._id}`} className="mt-2">
                   <button className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Pay</button>
                 </Link>
+              )}
+              {offer.status === "accepted" && !offer._id && (
+                <p className="mt-2 text-red-600 text-sm">Payment link not available</p>
               )}
               {offer.status === "bought" && offer.transactionId && (
                 <p className="mt-2 text-green-700 font-semibold">Transaction ID: {offer.transactionId}</p>
