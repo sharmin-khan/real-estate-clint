@@ -6,6 +6,7 @@ import { AuthContext } from "../context/AuthContext/AuthContext";
 
 const axiosSecure = axios.create({
   baseURL: "https://reak-estate-server.vercel.app",  
+  // baseURL: "http://localhost:3000",
   withCredentials: true,
 });
 

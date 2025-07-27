@@ -6,7 +6,6 @@ import PrivateRoute from "../routes/PrivateRoute";
 import RoleBasedRoute from "../routes/RoleBasedRoute"; // Import RoleBasedRoute
 import ErrorPage from "../component/ErrorPage/ErrorPage";
 
-
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Home/Login/Login";
 import Register from "../Pages/Register/Register";
@@ -33,19 +32,13 @@ import UpdateProperty from "../Dashboard/Agent/UpdateProperty";
 import ManageProperties from "../Dashboard/Admin/ManageProperties";
 import ManageUsers from "../Dashboard/Admin/ManageUsers";
 import ManageReviews from "../Dashboard/Admin/ManageReviews";
-
-
-
-
-
-
-
+import Payment from "../Pages/Payment/Payment";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -60,16 +53,36 @@ const router = createBrowserRouter([
         Component: Register,
       },
       {
-        path: 'all-properties',
-        element: <PrivateRoute><AllProperties></AllProperties></PrivateRoute> 
+        path: "all-properties",
+        element: (
+          <PrivateRoute>
+            <AllProperties></AllProperties>
+          </PrivateRoute>
+        ),
       },
       {
         path: "property-details/:id",
-        element: <PrivateRoute><PropertyDetailsPage /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <PropertyDetailsPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "make-offer/:propertyId",
-        element: <PrivateRoute><MakeOffer /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MakeOffer />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
       },
       {
         path: "dashboard",
@@ -81,58 +94,102 @@ const router = createBrowserRouter([
         children: [
           // Common profile route for all roles
           {
-             path: "profile",
-             element: <Profile />
-             },
+            path: "profile",
+            element: <Profile />,
+          },
 
           // User routes (Protected)
           {
             path: "wishlist",
-            element: <RoleBasedRoute allowedRoles={['user']}><WishlistPage /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["user"]}>
+                <WishlistPage />
+              </RoleBasedRoute>
+            ),
           },
           {
             path: "bought", // Fixed path
-            element: <RoleBasedRoute allowedRoles={['user']}><PropertyBought /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["user"]}>
+                <PropertyBought />
+              </RoleBasedRoute>
+            ),
           },
           {
             path: "my-reviews",
-            element: <RoleBasedRoute allowedRoles={['user']}><MyReviews /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["user"]}>
+                <MyReviews />
+              </RoleBasedRoute>
+            ),
           },
 
           // Agent routes (Protected)
           {
             path: "add-property",
-            element: <RoleBasedRoute allowedRoles={['agent']}><AddProperty /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["agent"]}>
+                <AddProperty />
+              </RoleBasedRoute>
+            ),
           },
           {
             path: "my-properties", // Fixed path
-            element: <RoleBasedRoute allowedRoles={['agent']}><MyAddedProperties /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["agent"]}>
+                <MyAddedProperties />
+              </RoleBasedRoute>
+            ),
           },
           {
             path: "sold-properties", // Fixed path
-            element: <RoleBasedRoute allowedRoles={['agent']}><MySoldProperties /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["agent"]}>
+                <MySoldProperties />
+              </RoleBasedRoute>
+            ),
           },
           {
             path: "requests", // Fixed path
-            element: <RoleBasedRoute allowedRoles={['agent']}><RequestedProperties /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["agent"]}>
+                <RequestedProperties />
+              </RoleBasedRoute>
+            ),
           },
           {
             path: "update-property/:id",
-            element: <RoleBasedRoute allowedRoles={['agent']}><UpdateProperty /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["agent"]}>
+                <UpdateProperty />
+              </RoleBasedRoute>
+            ),
           },
 
           // Admin routes (Protected)
           {
             path: "manage-properties",
-            element: <RoleBasedRoute allowedRoles={['admin']}><ManageProperties /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["admin"]}>
+                <ManageProperties />
+              </RoleBasedRoute>
+            ),
           },
           {
             path: "manage-users",
-            element: <RoleBasedRoute allowedRoles={['admin']}><ManageUsers /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["admin"]}>
+                <ManageUsers />
+              </RoleBasedRoute>
+            ),
           },
           {
             path: "manage-reviews",
-            element: <RoleBasedRoute allowedRoles={['admin']}><ManageReviews /></RoleBasedRoute>,
+            element: (
+              <RoleBasedRoute allowedRoles={["admin"]}>
+                <ManageReviews />
+              </RoleBasedRoute>
+            ),
           },
         ],
       },

@@ -21,6 +21,8 @@ const MyAddedProperties = () => {
     queryFn: async () => {
       const res = await axios.get(
         `https://reak-estate-server.vercel.app/properties?agentEmail=${user?.email}`
+        // `http://localhost:3000/properties?agentEmail=${user?.email}`
+        
       );
       return res.data;
     },
