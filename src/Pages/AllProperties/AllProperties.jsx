@@ -8,6 +8,7 @@ const AllProperties = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["properties"],
     queryFn: async () => {
@@ -16,14 +17,23 @@ const AllProperties = () => {
     },
   });
 
-  if (isLoading) return <div className="text-center mt-10"><LoadingSpinner /></div>;
+  if (isLoading)
+    return (
+      <div className="text-center mt-10">
+        <LoadingSpinner />
+      </div>
+    );
+
+  const verifiedProperties = properties.filter(
+    (property) => property.verificationStatus === "verified"
+  );
 
   return (
     <div className="p-4 max-w-7xl mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-center">All Properties</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {properties.map((property) => (
+        {verifiedProperties.map((property) => (
           <div
             key={property._id}
             className="border rounded-lg shadow-md p-4 bg-white space-y-2"
@@ -46,23 +56,21 @@ const AllProperties = () => {
               <span className="font-medium">{property.agentName}</span>
             </div>
 
-           <p className="text-sm">
-  <strong>Status:</strong>{" "}
-  {property.verificationStatus === "verified" && (
-    <span className="text-green-600 font-semibold">Verified</span>
-  )}
-  {property.verificationStatus === "pending" && (
-    <span className="text-yellow-500 font-semibold">Pending</span>
-  )}
-  {property.verificationStatus === "rejected" && (
-    <span className="text-red-500 font-semibold">Rejected</span>
-  )}
-</p>
-
+            <p className="text-sm">
+              <strong>Status:</strong>{" "}
+              {property.verificationStatus === "verified" && (
+                <span className="text-green-600 font-semibold">Verified</span>
+              )}
+              {property.verificationStatus === "pending" && (
+                <span className="text-yellow-500 font-semibold">Pending</span>
+              )}
+              {property.verificationStatus === "rejected" && (
+                <span className="text-red-500 font-semibold">Rejected</span>
+              )}
+            </p>
 
             <p className="text-sm">
-              <strong>Price:</strong> {property.priceMin}  - 
-              {property.priceMax} BDT
+              <strong>Price:</strong> {property.priceMin} - {property.priceMax} BDT
             </p>
 
             <Link to={`/property-details/${property._id}`}>
