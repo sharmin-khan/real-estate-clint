@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Wishlist from "../../Dashboard/user/Wishlist";
+import Swal from "sweetalert2";
 
 
 const WishlistPage = () => {
@@ -21,9 +22,15 @@ const WishlistPage = () => {
 
   const handleRemove = async (id) => {
     try {
-      await axios.delete(`https://reak-estate-server.vercel.app/wishlist/${id}`);
-      queryClient.invalidateQueries(['wishlist', user?.email]); 
+      const res = await axios.delete(`https://reak-estate-server.vercel.app/wishlist/${id}`);
+      if (res.data.deletedCount > 0) {
+        Swal.fire("Removed!", "Property removed from wishlist.", "success");
+        queryClient.invalidateQueries(['wishlist', user?.email]);
+      } else {
+        Swal.fire("Error", "Failed to remove property from wishlist.", "error");
+      }
     } catch (error) {
+      Swal.fire("Error", "Failed to remove property from wishlist.", "error");
       console.error("Failed to remove wishlist item:", error);
     }
   };

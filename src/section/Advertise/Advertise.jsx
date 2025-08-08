@@ -14,11 +14,15 @@ const Advertise = () => {
 
   if (isLoading) return <div className="text-center my-10"><LoadingSpinner /></div>;
 
+  const verifiedProperties = properties.filter(
+    (property) => property.verificationStatus === "verified"
+  );
+
   return (
     <section className="my-12 px-4 md:px-8 container mx-auto">
       <h2 className="text-2xl font-bold mb-6 text-center">Advertisement</h2>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {properties.slice(0, 4).map((property) => (
+        {verifiedProperties.slice(0, 4).map((property) => (
           <div
             key={property._id}
             className="bg-white shadow-md rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300"

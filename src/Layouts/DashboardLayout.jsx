@@ -1,11 +1,16 @@
 import { Outlet, NavLink } from "react-router";
-import { use } from "react";
+import { use, useEffect } from "react";
 import { useState } from "react";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 import useRole from "../hooks/useRole";
 import LoadingSpinner from "../component/LoadingSpinner/LoadingSpinner";
 
 const DashboardLayout = () => {
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+
+    
   const { user } = use(AuthContext);
   const [role, loading] = useRole(user?.email);
   const [sidebarOpen, setSidebarOpen] = useState(false);
