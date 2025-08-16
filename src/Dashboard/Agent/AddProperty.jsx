@@ -42,7 +42,8 @@ const AddProperty = () => {
         agentImage: user?.photoURL || "https://i.ibb.co/8j6c9b6/default-user.png",
         priceMin: Number(data.priceMin),
         priceMax: Number(data.priceMax),
-        verificationStatus: "pending"
+        verificationStatus: "pending",
+         createdAt: new Date().toISOString()  
       };
       await axios.post("https://reak-estate-server.vercel.app/properties", propertyData);
       Swal.fire("Success", "Property added successfully!", "success");

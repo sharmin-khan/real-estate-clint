@@ -55,9 +55,9 @@ const router = createBrowserRouter([
       {
         path: "all-properties",
         element: (
-          <PrivateRoute>
+        
             <AllProperties></AllProperties>
-          </PrivateRoute>
+    
         ),
       },
       {

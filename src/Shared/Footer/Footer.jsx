@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import logo from "../../assets/images/logo.avif";
+import logo from "../../assets/images/building.png";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
@@ -10,10 +10,10 @@ const Footer = () => {
         <div className="flex-1">
           <Link
             to="/"
-            className="flex items-center gap-2 text-xl font-extrabold"
+            className="flex items-center text-xl font-extrabold"
           >
-            <img src={logo} alt="logo" className="w-14 h-14" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 via-green-700 to-green-600">
+            <img src={logo} alt="logo" className="w-10 h-10" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-green-800 to-green-500">
               PropEase
             </span>
           </Link>
