@@ -3,6 +3,7 @@ import logo from "../../assets/images/building.png";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
+import ThemeToggle from "../../component/ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/dashboard"
-          className="font-semibold lg:text-lg text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          className="font-semibold lg:text-lg hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
         >
           Dashboard
         </NavLink>
@@ -72,92 +73,37 @@ const Navbar = () => {
         </div>
 
         {/* Right Side */}
-        <div className="navbar-end flex items-center gap-3">
-          {/* User image only on small devices, hamburger icon next to it */}
-          {user && (
-            <img
-              src={user.photoURL || "https://via.placeholder.com/40"}
-              alt={user.displayName || "User"}
-              title={user.displayName}
-              className="w-10 h-10 rounded-full border border-green-500 mr-1 md:hidden"
-            />
-          )}
-
-          {/* Mobile dropdown */}
-          <div className="dropdown dropdown-end md:hidden">
-            <label tabIndex={0} className="btn btn-ghost">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+        <div className="navbar-end flex items-center gap-2">
+          {user ? (
+            <>
+              <img
+                src={user.photoURL || "https://via.placeholder.com/40"}
+                alt={user.displayName || "User"}
+                title={user.displayName}
+                className="w-10 h-10 rounded-full border border-green-500"
+              />
+              <span className="font-semibold text-green-700 hidden sm:inline">
+                {user.displayName || "User"}
+              </span>
+              <ThemeToggle /> {/* ✅ সব ডিভাইসে user এর পাশে toggle */}
+              <button
+                onClick={handleLogout}
+                className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition cursor-pointer"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              {navLinks}
-
-              {/* Login/Logout inside mobile dropdown */}
-              <li className="mt-2 border-t pt-2">
-                {user ? (
-                  <button
-                    onClick={handleLogout}
-                    className="w-24 text-center text-red-500 font-semibold px-6 py-2 rounded-full border border-red-500 hover:bg-red-100 transition cursor-pointer"
-                  >
-                    Logout
-                  </button>
-                ) : (
-                  <Link
-                    to="/login"
-                    className="block w-24 text-center font-semibold bg-green-500 text-white rounded-full px-4 py-2 hover:bg-green-600 transition cursor-pointer"
-                  >
-                    Login
-                  </Link>
-                )}
-              </li>
-            </ul>
-          </div>
-
-          {/* Desktop user info and logout */}
-          <div className="hidden md:flex items-center gap-3">
-            {user && (
-              <>
-                <img
-                  src={user.photoURL || "https://via.placeholder.com/40"}
-                  alt={user.displayName || "User"}
-                  className="w-10 h-10 rounded-full border border-green-500"
-                  title={user.displayName}
-                />
-                <span className="font-semibold text-green-700">
-                  {user.displayName || "User"}
-                </span>
-                <button
-                  onClick={handleLogout}
-                  className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 px-4 py-2 rounded-full hover:bg-red-500 hover:text-white transition cursor-pointer"
-                >
-                  Logout
-                </button>
-              </>
-            )}
-            {!user && (
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <ThemeToggle /> {/* ✅ Login না থাকলেও পাশে toggle */}
               <Link
                 to="/login"
-                className="lg:text-lg text-sm font-semibold border px-4 py-2 rounded-full bg-green-500 text-white hover:bg-white hover:text-green-500 cursor-pointer transition"
+                className="lg:text-lg text-sm font-semibold border px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-white hover:text-green-500 cursor-pointer transition"
               >
                 Login
               </Link>
-            )}
-          </div>
+            </>
+          )}
         </div>
       </div>
     </div>

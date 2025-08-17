@@ -59,18 +59,18 @@ const FindProperty = () => {
 
   return (
     <div className="my-12">
-      <h2 className="text-2xl lg:text-3xl font-bold text-center md:text-left">
+      <div className="text-center mb-10">
+        <h2 className="text-2xl lg:text-3xl font-bold">
         Search by Location
       </h2>
-      <p className="text-center md:text-left text-gray-600 mt-2 max-w-xl mx-auto md:mx-0 mb-6">
+      <p className="text-gray-600 mt-3 mb-6">
         Enter the city, area, or neighborhood you are interested in to find
         verified properties quickly.
       </p>
+      </div>
 
       <div className="flex flex-col md:flex-row gap-4 mb-6 ">
-        <div className="flex-shrink-0 w-full md:w-1/2">
-          <img src={locationimg} alt="Location" className="w-full rounded" />
-        </div>
+       
 
         <div className="flex flex-col md:flex-1 gap-4 w-full">
           {/* Input and Button side by side */}
@@ -83,7 +83,7 @@ const FindProperty = () => {
               onChange={(e) => setLocation(e.target.value)}
             />
             <button
-              className="btn bg-green-500 text-white hover:bg-green-600 w-auto"
+              className="btn bg-green-500 text-white text-md md:text-lg hover:bg-green-600 w-auto"
               onClick={handleSearch}
               disabled={loading}
             >
@@ -92,9 +92,9 @@ const FindProperty = () => {
           </div>
 
           {/* Paragraph */}
-          <p className="text-gray-500 text-sm lg:text-lg">
+          <p className="text-gray-500 text-sm md:text-lg">
             Please enter the name of the city, area, or neighborhood you are
-            interested in. Our system will search for verified properties in the
+            interested in. Our system will search for verified properties <br /> in the
             specified location and display relevant results instantly. This
             helps you find properties that match your preferences quickly and
             efficiently.
@@ -114,12 +114,15 @@ const FindProperty = () => {
             />
           </div>
         </div>
+         <div className="flex-shrink-0 w-full md:w-1/2">
+          <img src={locationimg} alt="Location" className="w-full rounded" />
+        </div>
       </div>
 
       {message && <p className="text-red-500 mb-4 text-center">{message}</p>}
 
       {searchActive && (
-        <div className="relative mt-6">
+        <div className="relative mt-6 lg:mt-20 ">
           <button
             onClick={handleClearSearch}
             className="absolute -top-5 lg:-top-15 right-0 w-10 h-10 flex items-center justify-center text-3xl md:text-4xl rounded-full font-bold text-red-500 shadow-lg bg-red-100 transition cursor-pointer"

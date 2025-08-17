@@ -28,18 +28,18 @@ const Advertise = () => {
 
   return (
     <section className="my-12">
-      <div className="mb-6 px-4 sm:px-0">
-        <div className="flex flex-col md:flex-row md:items-center gap-2">
-          <h2 className="text-2xl lg:text-3xl font-bold text-center md:text-left">
+      <div className="mb-10">
+        <div className="flex flex-col md:flex-row items-center justify-center text-center gap-2">
+          <h2 className="text-2xl lg:text-3xl font-bold">
             Latest Verified Properties
           </h2>
-          <span className="bg-yellow-400 text-white w-24 text-xs font-bold px-2 py-1 rounded-full inline-flex justify-center md:justify-center">
+          <span className="bg-yellow-400 text-white w-24 text-xs font-bold p-1 rounded-full inline-flex justify-center md:justify-center">
             Featured
           </span>
         </div>
-        <p className="text-center md:text-left text-gray-600 mt-2 max-w-xl mx-auto md:mx-0">
-          Explore the most recent verified properties added to our platform.
-          These properties are carefully selected to ensure quality and trust.
+        <p className="text-center text-gray-600 mt-3">
+          Explore the most recent verified properties added to our platform. 
+          These properties <br /> are carefully selected to ensure quality and trust.
         </p>
       </div>
 

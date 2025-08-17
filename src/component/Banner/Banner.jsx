@@ -36,7 +36,7 @@ const Banner = () => {
               Explore verified listings, connect with trusted agents, and make
               your real estate journey smooth and successful with PropEase.
             </p>
-            <Link to='/all-properties' className="px-6 py-2 bg-green-500 rounded-full font-semibold text-white transition">
+            <Link to='/all-properties' className="px-6 py-2 bg-green-500 rounded-lg font-semibold text-white transition">
               Discover Your Property
             </Link>
           </div>
