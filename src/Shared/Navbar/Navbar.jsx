@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/building.png";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
@@ -55,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className=" bg-white sticky top-0 z-50  ">
+    <div className="bg-base-100  dark:bg-gray-900 dark:text-white backdrop-blur-md sticky top-0 z-50 transition">
       <div className="navbar w-11/12 mx-auto p-0 py-2 ">
         {/* Left Side Logo */}
         <div className="navbar-start">
@@ -82,10 +82,10 @@ const Navbar = () => {
                 title={user.displayName}
                 className="w-10 h-10 rounded-full border border-green-500"
               />
-              <span className="font-semibold text-green-700 hidden sm:inline">
+              <span className="font-semibold text-green-500 hidden sm:inline">
                 {user.displayName || "User"}
               </span>
-              <ThemeToggle /> {/* ✅ সব ডিভাইসে user এর পাশে toggle */}
+              <ThemeToggle /> 
               <button
                 onClick={handleLogout}
                 className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition cursor-pointer"
@@ -95,7 +95,7 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <ThemeToggle /> {/* ✅ Login না থাকলেও পাশে toggle */}
+              <ThemeToggle />
               <Link
                 to="/login"
                 className="lg:text-lg text-sm font-semibold border px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-white hover:text-green-500 cursor-pointer transition"
