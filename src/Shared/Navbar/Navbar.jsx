@@ -12,7 +12,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          className="font-semibold lg:text-lg text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          className="font-semibold lg:text-lg hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
         >
           Home
         </NavLink>
@@ -20,7 +20,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/all-properties"
-          className="font-semibold lg:text-lg text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          className="font-semibold lg:text-lg  hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
         >
           All Properties
         </NavLink>
@@ -108,24 +108,23 @@ const Navbar = () => {
               {navLinks}
 
               {/* Login/Logout inside mobile dropdown */}
-             <li className="mt-2 border-t pt-2">
-  {user ? (
-    <button
-      onClick={handleLogout}
-      className="w-24 text-center text-red-500 font-semibold px-6 py-2 rounded-full border border-red-500 hover:bg-red-100 transition"
-    >
-      Logout
-    </button>
-  ) : (
-    <Link
-      to="/login"
-      className="block w-24 text-center font-semibold bg-green-500 text-white rounded-full px-4 py-2 hover:bg-green-600 transition"
-    >
-      Login
-    </Link>
-  )}
-</li>
-
+              <li className="mt-2 border-t pt-2">
+                {user ? (
+                  <button
+                    onClick={handleLogout}
+                    className="w-24 text-center text-red-500 font-semibold px-6 py-2 rounded-full border border-red-500 hover:bg-red-100 transition cursor-pointer"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="block w-24 text-center font-semibold bg-green-500 text-white rounded-full px-4 py-2 hover:bg-green-600 transition cursor-pointer"
+                  >
+                    Login
+                  </Link>
+                )}
+              </li>
             </ul>
           </div>
 
@@ -144,7 +143,7 @@ const Navbar = () => {
                 </span>
                 <button
                   onClick={handleLogout}
-                  className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 px-6 py-2 rounded-full hover:bg-red-500 hover:text-white transition"
+                  className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 px-4 py-2 rounded-full hover:bg-red-500 hover:text-white transition cursor-pointer"
                 >
                   Logout
                 </button>
@@ -153,7 +152,7 @@ const Navbar = () => {
             {!user && (
               <Link
                 to="/login"
-                className="lg:text-lg text-sm font-semibold border px-6 py-2 rounded-full bg-green-500 text-white hover:bg-white hover:text-green-500"
+                className="lg:text-lg text-sm font-semibold border px-4 py-2 rounded-full bg-green-500 text-white hover:bg-white hover:text-green-500 cursor-pointer transition"
               >
                 Login
               </Link>

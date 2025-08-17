@@ -4,6 +4,7 @@ import Advertise from "../../section/Advertise/Advertise";
 import Newsletter from "../../section/Newstetter/Newsletter";
 import ApartmentSale from "../../section/ApartmentSale/ApartmentSale";
 import LatestReviews from "../../section/LatestViews/LatestViews";
+import FindProperty from "../../section/FindProperty/FindProperty";
 
 const Home = () => {
   useEffect(() => {
@@ -13,6 +14,7 @@ const Home = () => {
     <div>
       <Banner />
       <Advertise />
+      <FindProperty/>
       <LatestReviews />
       <ApartmentSale />
       <Newsletter />

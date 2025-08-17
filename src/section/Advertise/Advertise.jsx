@@ -79,7 +79,7 @@ const Advertise = () => {
 
 
               <Link to={`/property-details/${property._id}`}>
-                <button className="mt-2 border border-green-500 text-green-500 px-2 py-1 hover:bg-green-500 hover:text-white rounded bg-white w-full">
+                <button className="mt-2 border border-green-500 text-green-500 px-2 py-1 hover:bg-green-500 hover:text-white rounded bg-white w-full cursor-pointer">
                   View Details
                 </button>
               </Link>
