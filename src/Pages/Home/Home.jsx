@@ -5,6 +5,7 @@ import Newsletter from "../../section/Newstetter/Newsletter";
 import ApartmentSale from "../../section/ApartmentSale/ApartmentSale";
 import LatestReviews from "../../section/LatestViews/LatestViews";
 import FindProperty from "../../section/FindProperty/FindProperty";
+import FAQ from "../../section/FAQ/FAQ";
 
 const Home = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const Home = () => {
       <Banner />
       <Advertise />
       <FindProperty/>
+      <FAQ/>
       <LatestReviews />
       <ApartmentSale />
       <Newsletter />

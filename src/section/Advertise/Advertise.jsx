@@ -37,7 +37,7 @@ const Advertise = () => {
             Featured
           </span>
         </div>
-        <p className="text-center text-gray-600 mt-3">
+        <p className="text-center base-content mt-3">
           Explore the most recent verified properties added to our platform. 
           These properties <br /> are carefully selected to ensure quality and trust.
         </p>

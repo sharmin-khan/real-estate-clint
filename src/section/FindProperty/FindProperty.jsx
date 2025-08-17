@@ -63,7 +63,7 @@ const FindProperty = () => {
         <h2 className="text-2xl lg:text-3xl font-bold">
         Search by Location
       </h2>
-      <p className="text-gray-600 mt-3 mb-6">
+      <p className="base-content mt-3 mb-6">
         Enter the city, area, or neighborhood you are interested in to find
         verified properties quickly.
       </p>
