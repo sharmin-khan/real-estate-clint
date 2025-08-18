@@ -21,7 +21,7 @@ const FindProperty = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:3000/properties/search?location=${location}`
+        `http://reak-estate-server.vercel.app/properties/search?location=${location}`
       );
 
       if (res.status === 404) {

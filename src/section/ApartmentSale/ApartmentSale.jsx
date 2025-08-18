@@ -95,7 +95,7 @@ const ApartmentSale = () => {
             <div className="p-4 space-y-2">
               <h3 className="text-lg font-bold">{apt.title}</h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm">{apt.description}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">{apt.location}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300 font-bold">{apt.location}</p>
 
               <div className="flex justify-between text-sm text-gray-600 dark:text-gray-300 mt-2">
                 <span className="flex items-center gap-1">
