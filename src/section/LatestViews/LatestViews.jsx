@@ -28,11 +28,14 @@ const LatestReviews = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 md:px-8 my-12">
-      <h2 className="text-2xl text-gray-700 md:text-3xl font-bold text-center mb-8">Latest User Reviews</h2>
+    <div className="my-12">
+      <h2 className="text-2xl lg:text-3xl font-bold mb-3 text-center">Latest User Reviews</h2>
+      <p className="text-center max-w-xl mx-auto mb-6">
+  See what our users are saying about their experience with properties and agents.
+</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {latestReviews.map((review, index) => (
-          <div key={review._id || index} className="bg-white border-gray-400 border-1 rounded-xl shadow-lg p-5 hover:shadow-xl transition-shadow duration-300">
+          <div key={review._id || index} className="bg-white dark:bg-gray-900/50 border-gray-400 border-1 rounded-xl shadow-lg p-5 hover:shadow-xl transition-shadow duration-300">
             <div className="flex items-center gap-4 mb-4">
               <img
                 src={review.userImage || "https://i.ibb.co/L90wLWW/default-user.png"}
@@ -41,10 +44,10 @@ const LatestReviews = () => {
               />
               <div>
                 <p className="font-semibold text-lg">{review.userName}</p>
-                <p className="text-sm text-gray-500">{new Date(review.time).toLocaleDateString()}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{new Date(review.time).toLocaleDateString()}</p>
               </div>
             </div>
-            <p className="text-gray-700 mb-2 line-clamp-3">“{review.comment}”</p>
+            <p className="mb-2 line-clamp-3 text-gray-600 dark:text-gray-300">“{review.comment}”</p>
             <p className="text-sm text-blue-600 font-medium">🏠 {review.propertyTitle}</p>
           </div>
         ))}

@@ -55,7 +55,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100  dark:bg-gray-900 dark:text-white backdrop-blur-md sticky top-0 z-50 transition">
+    <div className="bg-base-100 dark:text-white sticky top-0 z-50 transition">
       <div className="navbar w-11/12 mx-auto p-0 py-2 ">
         {/* Left Side Logo */}
         <div className="navbar-start">

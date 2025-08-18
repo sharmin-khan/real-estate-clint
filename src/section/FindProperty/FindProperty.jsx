@@ -63,7 +63,7 @@ const FindProperty = () => {
         <h2 className="text-2xl lg:text-3xl font-bold">
         Search by Location
       </h2>
-      <p className="base-content mt-3 mb-6">
+      <p className="mt-3 mb-6">
         Enter the city, area, or neighborhood you are interested in to find
         verified properties quickly.
       </p>
@@ -78,7 +78,7 @@ const FindProperty = () => {
             <input
               type="text"
               placeholder="Enter location..."
-              className="input input-bordered flex-1"
+              className="input input-bordered border-b-gray-300 flex-1 font-semibold"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
@@ -92,7 +92,7 @@ const FindProperty = () => {
           </div>
 
           {/* Paragraph */}
-          <p className="text-gray-500 text-sm md:text-lg">
+          <p className="text-gray-600 dark:text-gray-300  text-sm md:text-lg">
             Please enter the name of the city, area, or neighborhood you are
             interested in. Our system will search for verified properties <br /> in the
             specified location and display relevant results instantly. This

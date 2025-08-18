@@ -37,7 +37,7 @@ const Advertise = () => {
             Featured
           </span>
         </div>
-        <p className="text-center base-content mt-3">
+        <p className="text-center mt-3">
           Explore the most recent verified properties added to our platform. 
           These properties <br /> are carefully selected to ensure quality and trust.
         </p>
@@ -47,7 +47,7 @@ const Advertise = () => {
         {latestProperties.map((property) => (
           <div
             key={property._id}
-            className="bg-white shadow-md rounded-lg overflow-hidden hover:scale-105 hover:shadow-lg transition-transform duration-300"
+            className="bg-white dark:bg-gray-900/70 shadow-md rounded-lg overflow-hidden hover:scale-105 hover:shadow-lg transition-transform duration-300"
           >
             <img
               src={property.image}
@@ -58,13 +58,13 @@ const Advertise = () => {
               <h3 className="text-lg font-semibold">{property.title || property.location}</h3>
 
               {/* Location */}
-              <p className="text-gray-600 flex items-center gap-1">
+              <p className="text-gray-600 dark:text-gray-300 flex items-center gap-1">
                 <FaMapMarkerAlt className="text-red-500" />
                 {property.location}
               </p>
 
               {/* Price */}
-              <p className="text-gray-600 flex items-center gap-1">
+              <p className="text-gray-600 dark:text-gray-300 flex items-center gap-1">
                 <FaMoneyBillWave className="text-yellow-700" />
                 {property.priceMin} - {property.priceMax} BDT
               </p>
@@ -79,7 +79,7 @@ const Advertise = () => {
 
 
               <Link to={`/property-details/${property._id}`}>
-                <button className="mt-2 border border-green-500 text-green-500 px-2 py-1 hover:bg-green-500 hover:text-white rounded bg-white w-full cursor-pointer">
+                <button className="mt-2 border border-green-500 text-green-500 px-2 py-1 hover:bg-green-500 hover:text-white rounded bg-white dark:bg-transparent w-full cursor-pointer">
                   View Details
                 </button>
               </Link>

@@ -16,9 +16,9 @@ const Home = () => {
       <Banner />
       <Advertise />
       <FindProperty/>
+      <ApartmentSale />
       <FAQ/>
       <LatestReviews />
-      <ApartmentSale />
       <Newsletter />
     </div>
   );

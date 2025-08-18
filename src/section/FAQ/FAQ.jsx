@@ -25,15 +25,18 @@ answer: "Use the available filters and categories on our platform to browse and 
 
   return (
     <div className="my-12 px-4 sm:px-0 max-w-5xl mx-auto ">
-      <h2 className="text-2xl lg:text-3xl font-bold text-center mb-6">
+      <h2 className="text-2xl lg:text-3xl font-bold text-center mb-3">
         Frequently Asked Questions
       </h2>
+      <p className="text-center max-w-xl mx-auto mb-6">
+  Here are some of the most common questions our users ask about properties, agents, and services.
+</p>
 
       <div className="space-y-2">
         {faqs.map((faq, index) => (
-          <div key={index} className="collapse collapse-arrow border border-gray-400 rounded-box">
+          <div key={index} className="collapse collapse-arrow border border-gray-500 rounded-box">
             <input type="checkbox" />
-            <div className="collapse-title text-lg text-gray-500 font-medium">{faq.question}</div>
+            <div className="collapse-title text-lg text-gray-600 dark:text-gray-300 font-medium">{faq.question}</div>
             <div className="collapse-content">
               <p className="text-gray-500">{faq.answer}</p>
             </div>
