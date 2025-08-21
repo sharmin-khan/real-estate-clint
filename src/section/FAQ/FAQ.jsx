@@ -28,7 +28,7 @@ answer: "Use the available filters and categories on our platform to browse and 
       <h2 className="text-2xl lg:text-3xl font-bold text-center mb-3">
         Frequently Asked Questions
       </h2>
-      <p className="text-center max-w-xl mx-auto mb-6">
+      <p className="text-center max-w-xl mx-auto mb-10">
   Here are some of the most common questions our users ask about properties, agents, and services.
 </p>
 

@@ -20,10 +20,10 @@ const DashboardLayout = () => {
   }
 
   return (
-    <div className="md:flex min-h-screen">
+    <div className="md:flex min-h-screen bg-green-600/20">
       {/* Mobile header with toggle button */}
-      <div className="md:hidden flex items-center justify-between bg-green-100 p-4">
-        <h2 className="text-xl font-bold">Dashboard</h2>
+      <div className="md:hidden flex items-center justify-between bg-green-500 p-4 ">
+        <h2 className="text-xl font-bold text-white">Dashboard</h2>
         <button
           onClick={() => setSidebarOpen(true)}
           className="text-green-700 focus:outline-none"
@@ -31,7 +31,7 @@ const DashboardLayout = () => {
         >
           {/* Hamburger icon */}
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 text-white"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -46,40 +46,42 @@ const DashboardLayout = () => {
       {/* Sidebar */}
       <div
         className={`
-          fixed inset-y-0 left-0 z-40 w-64 bg-green-100 p-4 transform
-          md:static md:translate-x-0 md:flex md:flex-col md:w-64 md:min-h-screen
+          fixed inset-y-0 left-0 z-50 w-64 bg-green-500 text-white p-4 transform
+          md:static md:translate-x-0 md:flex md:flex-col md:w-64 md:min-h-screen 
           transition-transform duration-200 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
         {/* Close button on mobile */}
-        <div className="md:hidden flex justify-end mb-4">
-          <button
-            onClick={() => setSidebarOpen(false)}
-            className="text-green-700 focus:outline-none"
-            aria-label="Close sidebar"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
+        {/* Mobile Dashboard header with close button */}
+<div className="md:hidden flex justify-between items-center mb-4">
+  <h2 className="text-xl font-bold">Dashboard</h2>
+  <button
+    onClick={() => setSidebarOpen(false)}
+    className="text-white focus:outline-none"
+    aria-label="Close sidebar"
+  >
+    <svg
+      className="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
 
-        <h2 className="text-xl font-bold mb-4">Dashboard</h2>
+
+        <h2 className="text-xl font-bold mb-4 hidden md:block">Dashboard</h2>
 
         {/* Common */}
         <NavLink
           to="/dashboard/profile"
           className={({ isActive }) =>
-            "block py-1 text-gray-800 hover:underline" +
-            (isActive ? " font-bold text-green-700" : "")
+            (isActive ? " font-bold text-black" : "")
           }
           onClick={() => setSidebarOpen(false)}
         >
@@ -93,7 +95,7 @@ const DashboardLayout = () => {
               to="/dashboard/wishlist"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -103,7 +105,7 @@ const DashboardLayout = () => {
               to="/dashboard/bought"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -113,7 +115,7 @@ const DashboardLayout = () => {
               to="/dashboard/my-reviews"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -129,7 +131,7 @@ const DashboardLayout = () => {
               to="/dashboard/add-property"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -139,7 +141,7 @@ const DashboardLayout = () => {
               to="/dashboard/my-properties"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -149,7 +151,7 @@ const DashboardLayout = () => {
               to="/dashboard/sold-properties"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -159,7 +161,7 @@ const DashboardLayout = () => {
               to="/dashboard/requests"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -175,7 +177,7 @@ const DashboardLayout = () => {
               to="/dashboard/manage-properties"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -185,7 +187,7 @@ const DashboardLayout = () => {
               to="/dashboard/manage-users"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >
@@ -195,7 +197,7 @@ const DashboardLayout = () => {
               to="/dashboard/manage-reviews"
               className={({ isActive }) =>
                 "block py-1 hover:underline" +
-                (isActive ? " font-bold text-green-700" : "")
+                (isActive ? " font-bold text-black" : "")
               }
               onClick={() => setSidebarOpen(false)}
             >

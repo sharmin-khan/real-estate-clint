@@ -71,7 +71,7 @@ const ApartmentSale = () => {
       <h2 className="text-2xl lg:text-3xl font-bold text-center mb-3">
         Apartments for Sale
       </h2>
-      <p className="text-center mb-6">
+      <p className="text-center mb-10">
         Explore our handpicked modern and luxury apartments available in Dhaka.
       </p>
 

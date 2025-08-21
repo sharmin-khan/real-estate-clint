@@ -21,7 +21,7 @@ const LatestReviews = () => {
   if (error) {
     return (
       <div className="max-w-6xl mx-auto p-4">
-        <h2 className="text-3xl font-bold mb-6 text-center">Latest User Reviews</h2>
+        <h2 className="text-3xl font-bold mb-10 text-center">Latest User Reviews</h2>
         <div className="text-red-600 text-center">{error}</div>
       </div>
     );
