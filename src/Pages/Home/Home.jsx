@@ -13,7 +13,9 @@ const Home = () => {
   }, []);
   return (
     <div>
-      <Banner />
+      <div className="mt-6">
+        <Banner />
+      </div>
       <Advertise />
       <FindProperty/>
       <ApartmentSale />

@@ -119,7 +119,7 @@ const FindProperty = () => {
 
       {/* 🔹 Modal */}
       {searchActive && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-r from-green-500 to-green-900 bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-r from-green-500 to-green-900 dark:from-green-400 dark:to-green-900 ">
           <div className="bg-white rounded-lg w-full max-w-6xl p-6 relative shadow-lg overflow-y-auto max-h-[90vh]">
             {/* Close Button */}
             <button
@@ -138,14 +138,14 @@ const FindProperty = () => {
                 {searchResults.map((property) => (
                   <div
                     key={property._id}
-                    className="rounded-lg shadow-md p-4 bg-white space-y-2"
+                    className="rounded-lg shadow-lg p-4 bg-white space-y-2"
                   >
                     <img
                       src={property.image}
                       alt={property.title}
                       className="w-full h-40 object-cover rounded-md"
                     />
-                    <h3 className="text-xl font-semibold">{property.title}</h3>
+                    <h3 className="text-xl font-semibold text-green-500">{property.title}</h3>
                     <p className="text-gray-600">📍 {property.location}</p>
 
                     <div className="flex items-center gap-3 mt-2">
@@ -154,17 +154,17 @@ const FindProperty = () => {
                         alt={property.agentName}
                         className="w-10 h-10 rounded-full object-cover"
                       />
-                      <span className="font-medium">{property.agentName}</span>
+                      <span className="font-medium text-green-500">{property.agentName}</span>
                     </div>
 
-                    <p className="text-sm">
+                    <p className="text-sm text-green-500">
                       <strong>Status:</strong>{" "}
                       <span className="text-green-600 font-semibold">
                         Verified
                       </span>
                     </p>
 
-                    <p className="text-sm">
+                    <p className="text-sm text-gray-600">
                       <strong>Price:</strong> {property.priceMin} -{" "}
                       {property.priceMax} BDT
                     </p>

@@ -12,7 +12,9 @@ const AllProperties = () => {
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ["properties"],
     queryFn: async () => {
-      const res = await axios.get("https://reak-estate-server.vercel.app/properties");
+      const res = await axios.get(
+        "https://reak-estate-server.vercel.app/properties"
+      );
       return res.data;
     },
   });
@@ -29,14 +31,19 @@ const AllProperties = () => {
   );
 
   return (
-    <div className="p-4 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">All Properties</h2>
+    <div className="my-12">
+      <h2 className="text-3xl font-bold  text-center">All Properties</h2>
+      <p className="text-center mb-10 mt-3 max-w-2xl mx-auto">
+        Browse through all available properties including houses, apartments,
+        and commercial spaces. Find the perfect place that matches your needs
+        and budget.
+      </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {verifiedProperties.map((property) => (
           <div
             key={property._id}
-            className="border rounded-lg shadow-md p-4 bg-white space-y-2"
+            className="border border-gray-300 dark:border-gray-600 rounded-lg shadow-md p-4 bg-white dark:bg-gray-900/70 space-y-2"
           >
             <img
               src={property.image}
@@ -45,7 +52,7 @@ const AllProperties = () => {
             />
 
             <h3 className="text-xl font-semibold">{property.title}</h3>
-            <p className="text-gray-600">📍 {property.location}</p>
+            <p className="text-green-500">📍 {property.location}</p>
 
             <div className="flex items-center gap-3 mt-2">
               <img
@@ -70,7 +77,8 @@ const AllProperties = () => {
             </p>
 
             <p className="text-sm">
-              <strong>Price:</strong> {property.priceMin} - {property.priceMax} BDT
+              <strong>Price:</strong> {property.priceMin} - {property.priceMax}{" "}
+              BDT
             </p>
 
             <Link to={`/property-details/${property._id}`}>
