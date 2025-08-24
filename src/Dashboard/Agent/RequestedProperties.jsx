@@ -34,7 +34,7 @@ const RequestedProperties = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-2 md:px-4 py-4">
-      <h2 className="text-xl md:text-2xl font-bold mb-4 text-center md:text-left">
+      <h2 className="text-xl md:text-2xl font-bold mb-6 text-center ">
         Requested / Offered Properties
       </h2>
 
@@ -55,7 +55,7 @@ const RequestedProperties = () => {
             {offers.map((offer) => (
               <tr
                 key={offer._id}
-                className="border-t border-gray-200 hover:bg-gray-50 transition-colors"
+                className="border-t border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
               >
                 <td className="py-3 px-4">{offer.propertyTitle}</td>
                 <td className="py-3 px-4">{offer.propertyLocation}</td>

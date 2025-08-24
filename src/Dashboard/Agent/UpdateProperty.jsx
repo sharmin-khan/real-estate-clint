@@ -81,98 +81,132 @@ const UpdateProperty = () => {
   if (!property) return <p>Property not found.</p>;
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-6 rounded shadow mt-8">
-      <h2 className="text-2xl font-bold mb-4">Update Property</h2>
-      <form
-        onSubmit={handleSubmit((data) => updateMutation.mutate(data))}
-        className="space-y-4"
+ <div className="max-w-lg mx-auto p-8 rounded-2xl shadow-lg bg-white dark:bg-gray-900 transition-colors duration-300 mt-12">
+  <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">
+    Update Property
+  </h2>
+
+  <form
+    onSubmit={handleSubmit((data) => updateMutation.mutate(data))}
+    className="space-y-5"
+  >
+    {/* Image Upload */}
+    <div>
+      <label className="block font-medium mb-2 text-gray-700 dark:text-gray-200">
+        Property Image
+      </label>
+      {imagePreview && (
+        <img
+          src={imagePreview}
+          alt="Preview"
+          className="w-full h-48 object-cover rounded-lg mb-3 shadow"
+        />
+      )}
+      <label
+        htmlFor="property-image"
+        className="flex items-center justify-between px-4 py-2 border rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-800 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
       >
-        <div>
-          <label className="block font-semibold mb-1">Property Image</label>
-          {imagePreview && (
-            <img
-              src={imagePreview}
-              alt="Preview"
-              className="w-full h-40 object-cover rounded mb-2"
-            />
-          )}
-          <label htmlFor="property-image" className="input input-bordered w-full flex items-center cursor-pointer bg-white text-gray-700">
-            <span className="flex-1">{imagePreview ? "Change Photo" : "Upload Photo"}</span>
-            <input
-              id="property-image"
-              type="file"
-              {...register("image")}
-              accept="image/*"
-              className="hidden"
-              onChange={e => {
-                if (e.target.files && e.target.files[0]) {
-                  setImagePreview(URL.createObjectURL(e.target.files[0]));
-                }
-              }}
-            />
-          </label>
-        </div>
-        <div>
-          <label className="block font-semibold mb-1">Property Title</label>
-          <input
-            type="text"
-            {...register("title", { required: true })}
-            className="input input-bordered w-full"
-          />
-        </div>
-        <div>
-          <label className="block font-semibold mb-1">Property Location</label>
-          <input
-            type="text"
-            {...register("location", { required: true })}
-            className="input input-bordered w-full"
-          />
-        </div>
-        <div>
-          <label className="block font-semibold mb-1">Agent Name</label>
-          <input
-            type="text"
-            {...register("agentName")}
-            className="input input-bordered w-full bg-gray-100"
-            readOnly
-          />
-        </div>
-        <div>
-          <label className="block font-semibold mb-1">Agent Email</label>
-          <input
-            type="email"
-            {...register("agentEmail")}
-            className="input input-bordered w-full bg-gray-100"
-            readOnly
-          />
-        </div>
-        <div className="flex gap-2">
-          <div className="flex-1">
-            <label className="block font-semibold mb-1">Min Price</label>
-            <input
-              type="number"
-              {...register("priceMin", { required: true })}
-              className="input input-bordered w-full"
-            />
-          </div>
-          <div className="flex-1">
-            <label className="block font-semibold mb-1">Max Price</label>
-            <input
-              type="number"
-              {...register("priceMax", { required: true })}
-              className="input input-bordered w-full"
-            />
-          </div>
-        </div>
-        <button
-          type="submit"
-          className="btn btn-primary w-full"
-          disabled={updateMutation.isLoading}
-        >
-          {updateMutation.isLoading ? "Updating..." : "Update Property"}
-        </button>
-      </form>
+        <span>{imagePreview ? "Change Photo" : "Upload Photo"}</span>
+        <input
+          id="property-image"
+          type="file"
+          {...register("image")}
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => {
+            if (e.target.files && e.target.files[0]) {
+              setImagePreview(URL.createObjectURL(e.target.files[0]));
+            }
+          }}
+        />
+      </label>
     </div>
+
+    {/* Title */}
+    <div>
+      <label className="block font-medium mb-2 text-gray-700 dark:text-gray-200">
+        Property Title
+      </label>
+      <input
+        type="text"
+        {...register("title", { required: true })}
+        className="input input-bordered w-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+      />
+    </div>
+
+    {/* Location */}
+    <div>
+      <label className="block font-medium mb-2 text-gray-700 dark:text-gray-200">
+        Property Location
+      </label>
+      <input
+        type="text"
+        {...register("location", { required: true })}
+        className="input input-bordered w-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+      />
+    </div>
+
+    {/* Agent Name */}
+    <div>
+      <label className="block font-medium mb-2 text-gray-700 dark:text-gray-200">
+        Agent Name
+      </label>
+      <input
+        type="text"
+        {...register("agentName")}
+        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+        readOnly
+      />
+    </div>
+
+    {/* Agent Email */}
+    <div>
+      <label className="block font-medium mb-2 text-gray-700 dark:text-gray-200">
+        Agent Email
+      </label>
+      <input
+        type="email"
+        {...register("agentEmail")}
+        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300"
+        readOnly
+      />
+    </div>
+
+    {/* Price Range */}
+    <div className="flex gap-3">
+      <div className="flex-1">
+        <label className="block font-medium mb-2 text-gray-700 dark:text-gray-200">
+          Min Price
+        </label>
+        <input
+          type="number"
+          {...register("priceMin", { required: true })}
+          className="input input-bordered w-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+        />
+      </div>
+      <div className="flex-1">
+        <label className="block font-medium mb-2 text-gray-700 dark:text-gray-200">
+          Max Price
+        </label>
+        <input
+          type="number"
+          {...register("priceMax", { required: true })}
+          className="input input-bordered w-full dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
+        />
+      </div>
+    </div>
+
+    {/* Submit Button */}
+    <button
+      type="submit"
+      className="btn bg-green-500 hover:bg-green-600 w-full rounded-lg"
+      disabled={updateMutation.isLoading}
+    >
+      {updateMutation.isLoading ? "Updating..." : "Update Property"}
+    </button>
+  </form>
+</div>
+
   );
 };
 
