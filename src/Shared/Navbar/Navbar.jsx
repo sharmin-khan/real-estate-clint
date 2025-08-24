@@ -34,6 +34,22 @@ const Navbar = () => {
           Dashboard
         </NavLink>
       </li>
+       <li>
+        <NavLink
+          to="/offers"
+          className="font-semibold lg:text-lg hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+        >
+         Offers
+        </NavLink>
+      </li>
+       <li>
+        <NavLink
+          to="/blogs"
+          className="font-semibold lg:text-lg hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+        >
+          Blogs
+        </NavLink>
+      </li>
     </>
   );
 

@@ -33,6 +33,8 @@ import ManageProperties from "../Dashboard/Admin/ManageProperties";
 import ManageUsers from "../Dashboard/Admin/ManageUsers";
 import ManageReviews from "../Dashboard/Admin/ManageReviews";
 import Payment from "../Pages/Payment/Payment";
+import Blogs from "../Pages/Blogs/Blogs";
+import OffersDeals from "../Pages/OffersDeals/OfferrsDeals";
 
 const router = createBrowserRouter([
   {
@@ -55,10 +57,16 @@ const router = createBrowserRouter([
       {
         path: "all-properties",
         element: (
-        
             <AllProperties></AllProperties>
-    
         ),
+      },
+      {
+        path: "blogs",
+        Component: Blogs
+      },
+         {
+        path: "offers",
+        Component: OffersDeals
       },
       {
         path: "property-details/:id",
