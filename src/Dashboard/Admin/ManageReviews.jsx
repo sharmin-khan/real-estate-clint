@@ -22,7 +22,7 @@ const ManageReviews = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
+    <div className="max-w-6xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-6 text-center">Manage Reviews</h2>
       {reviews.length === 0 ? (
         <p className="text-center text-gray-500">No reviews found.</p>
@@ -37,11 +37,11 @@ const ManageReviews = () => {
                   className="w-12 h-12 rounded-full object-cover border"
                 />
                 <div>
-                  <div className="font-semibold">{review.userName || "Unknown"}</div>
+                  <div className="font-semibold text-green-500">{review.userName || "Unknown"}</div>
                   <div className="text-sm text-gray-500">{review.userEmail}</div>
                 </div>
               </div>
-              <div className="mt-2">{review.comment}</div>
+              <div className="mt-2 text-black">{review.comment}</div>
               <button
                 onClick={() => handleDelete(review._id)}
                 className="self-end bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"

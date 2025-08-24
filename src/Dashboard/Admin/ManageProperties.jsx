@@ -34,21 +34,21 @@ const ManageProperties = () => {
   if (isLoading) return <p className="text-center my-10">Loading...</p>;
 
   return (
-    <div className="w-full max-w-full px-2 md:px-6 lg:px-12 mx-auto">
-      <h2 className="text-2xl font-bold mb-4 text-center md:text-left">Manage Properties</h2>
+    <div className="w-full max-w-full px-2 mx-auto">
+      <h2 className="text-2xl font-bold mb-6 text-center">Manage Properties</h2>
 
       {/* Table view for md and up */}
-      <div className="hidden md:block overflow-x-auto rounded-lg shadow">
+      <div className="hidden dark:border md:block overflow-x-auto rounded-lg shadow">
         <table className="min-w-[700px] w-full text-sm md:text-base">
-          <thead className="bg-gray-100">
+          <thead className="bg-gray-100 dark:bg-gray-900/50">
             <tr>
-              <th className="py-2 px-2">Title</th>
-              <th className="py-2 px-2">Location</th>
-              <th className="py-2 px-2">Agent Name</th>
-              <th className="py-2 px-2">Agent Email</th>
-              <th className="py-2 px-2">Price Range</th>
-              <th className="py-2 px-2">Status</th>
-              <th className="py-2 px-2">Action</th>
+              <th className="py-3 px-2 text-left">Title</th>
+              <th className="py-3 px-2 text-left">Location</th>
+              <th className="py-3 px-2 text-left">Agent Name</th>
+              <th className="py-3 px-2 text-left">Agent Email</th>
+              <th className="py-3 px-2 text-left">Price Range</th>
+              <th className="py-3 px-2 text-left">Status</th>
+              <th className="py-3 px-2 text-left">Action</th>
             </tr>
           </thead>
           <tbody>

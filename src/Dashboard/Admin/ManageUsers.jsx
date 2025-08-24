@@ -39,19 +39,19 @@ const ManageUsers = () => {
     );
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-2 md:px-6 lg:px-12">
-      <h2 className="text-2xl font-bold mb-4 text-center md:text-left">Manage Users</h2>
+    <div className="w-full max-w-6xl mx-auto px-2 md:px-6 lg:px-12">
+      <h2 className="text-2xl font-bold mb-6 text-center">Manage Users</h2>
 
       {/* Table view for md and up */}
       <div className="hidden md:block overflow-x-auto rounded-lg shadow">
         <table className="min-w-full w-full text-sm md:text-base table-auto">
-          <thead className="bg-gray-100">
+          <thead className=" bg-gray-100 dark:bg-gray-900/50">
             <tr>
-              <th className="py-2 px-2 text-left">Name</th>
-              <th className="py-2 px-2 text-left">Email</th>
-              <th className="py-2 px-2 text-left">Role</th>
-              <th className="py-2 px-2 text-left">Status</th>
-              <th className="py-2 px-2 text-left">Action</th>
+              <th className="py-3 px-2 text-left">Name</th>
+              <th className="py-3 px-2 text-left">Email</th>
+              <th className="py-3 px-2 text-left">Role</th>
+              <th className="py-3 px-2 text-left">Status</th>
+              <th className="py-3 px-2 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
