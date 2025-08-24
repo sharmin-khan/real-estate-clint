@@ -62,60 +62,94 @@ const MakeOffer = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded shadow mt-8">
-      <h2 className="text-2xl font-bold mb-4 text-center">Make an Offer</h2>
-      <form onSubmit={e => { e.preventDefault(); handleOffer(); }} className="space-y-4">
-        <div>
-          <label className="block font-semibold">Property Title</label>
-          <input type="text" value={property.title} readOnly className="input input-bordered w-full bg-gray-100" />
-        </div>
-        <div>
-          <label className="block font-semibold">Location</label>
-          <input type="text" value={property.location} readOnly className="input input-bordered w-full bg-gray-100" />
-        </div>
-        <div>
-          <label className="block font-semibold">Agent Name</label>
-          <input type="text" value={property.agentName} readOnly className="input input-bordered w-full bg-gray-100" />
-        </div>
-        <div>
-          <label className="block font-semibold">Offer Amount</label>
-          <input
-            type="number"
-            value={amount}
-            min={property.priceMin}
-            max={property.priceMax}
-            onChange={e => setAmount(e.target.value)}
-            placeholder={`Between ${property.priceMin}BDT and ${property.priceMax}BDT`}
-            className="input input-bordered w-full"
-            required
-          />
-        </div>
-        <div>
-          <label className="block font-semibold">Buying Date</label>
-          <input
-            type="date"
-            value={date}
-            onChange={e => setDate(e.target.value)}
-            className="input input-bordered w-full"
-            required
-          />
-        </div>
-        <div>
-          <label className="block font-semibold">Buyer Email</label>
-          <input type="email" value={user.email} readOnly className="input input-bordered w-full bg-gray-100" />
-        </div>
-        <div>
-          <label className="block font-semibold">Buyer Name</label>
-          <input type="text" value={user.displayName} readOnly className="input input-bordered w-full bg-gray-100" />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-500 font-semibold mt-4"
-        >
-          Offer
-        </button>
-      </form>
+   <div className="max-w-lg mx-auto p-6 rounded shadow mt-8 bg-white dark:bg-gray-800 transition-colors duration-300">
+  <h2 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100">
+    Make an Offer
+  </h2>
+  <form
+    onSubmit={(e) => {
+      e.preventDefault();
+      handleOffer();
+    }}
+    className="space-y-4"
+  >
+    <div>
+      <label className="block font-semibold text-gray-700 dark:text-gray-200">Property Title</label>
+      <input
+        type="text"
+        value={property.title}
+        readOnly
+        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+      />
     </div>
+    <div>
+      <label className="block font-semibold text-gray-700 dark:text-gray-200">Location</label>
+      <input
+        type="text"
+        value={property.location}
+        readOnly
+        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+      />
+    </div>
+    <div>
+      <label className="block font-semibold text-gray-700 dark:text-gray-200">Agent Name</label>
+      <input
+        type="text"
+        value={property.agentName}
+        readOnly
+        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+      />
+    </div>
+    <div>
+      <label className="block font-semibold text-gray-700 dark:text-gray-200">Offer Amount</label>
+      <input
+        type="number"
+        value={amount}
+        min={property.priceMin}
+        max={property.priceMax}
+        onChange={(e) => setAmount(e.target.value)}
+        placeholder={`Between ${property.priceMin}BDT and ${property.priceMax}BDT`}
+        className="input input-bordered w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+        required
+      />
+    </div>
+    <div>
+      <label className="block font-semibold text-gray-700 dark:text-gray-200">Buying Date</label>
+      <input
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        className="input input-bordered w-full bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+        required
+      />
+    </div>
+    <div>
+      <label className="block font-semibold text-gray-700 dark:text-gray-200">Buyer Email</label>
+      <input
+        type="email"
+        value={user.email}
+        readOnly
+        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+      />
+    </div>
+    <div>
+      <label className="block font-semibold text-gray-700 dark:text-gray-200">Buyer Name</label>
+      <input
+        type="text"
+        value={user.displayName}
+        readOnly
+        className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+      />
+    </div>
+    <button
+      type="submit"
+      className="w-full cursor-pointer bg-green-500 dark:bg-green-600 text-white py-2 rounded hover:bg-green-500 dark:hover:bg-green-400 font-semibold mt-4 transition-colors duration-300"
+    >
+      Offer
+    </button>
+  </form>
+</div>
+
   );
 };
 

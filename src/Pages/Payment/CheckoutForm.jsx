@@ -80,26 +80,38 @@ const CheckoutForm = ({ amount, offerId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="p-2 border rounded w-full bg-gray-100">
-        Amount: {amount} BDT
-      </div>
-      <CardElement className="p-2 border rounded" />
-      <button
-        type="submit"
-        disabled={!stripe || processing}
-        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
-      >
-        {processing ? 'Processing...' : 'Pay'}
-      </button>
-      {error && <div className="text-red-500">{error}</div>}
-      {success && (
-        <div className="text-green-500">
-          {success}
-          {transactionId && <div>Transaction ID: {transactionId}</div>}
-        </div>
-      )}
-    </form>
+   <form onSubmit={handleSubmit} className="space-y-4">
+  {/* Amount Display */}
+  <div className="p-3 border border-gray-300 dark:border-gray-600 rounded w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+    Amount: {amount} BDT
+  </div>
+
+  {/* Card Element */}
+  <div className="p-3 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800">
+    <CardElement />
+  </div>
+
+  {/* Submit Button */}
+  <button
+    type="submit"
+    disabled={!stripe || processing}
+    className="w-full  bg-green-500 hover:bg-green-600 cursor-pointer text-white px-4 py-2 rounded  disabled:opacity-50 transition-colors duration-300"
+  >
+    {processing ? 'Processing...' : 'Pay'}
+  </button>
+
+  {/* Error Message */}
+  {error && <div className="text-red-500">{error}</div>}
+
+  {/* Success Message */}
+  {success && (
+    <div className="text-green-500">
+      {success}
+      {transactionId && <div>Transaction ID: {transactionId}</div>}
+    </div>
+  )}
+</form>
+
   );
 };
 
