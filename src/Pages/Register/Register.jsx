@@ -145,20 +145,20 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 bg-base-200">
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10">
       {/* Left Animation */}
       <div className="w-full md:w-1/2 hidden lg:flex justify-center">
         <Lottie animationData={registerAnimation} loop={true} className="w-96" />
       </div>
 
       {/* Right Form */}
-      <div className="w-full md:w-1/2 max-w-md bg-white shadow-xl p-6 rounded space-y-4">
+      <div className="w-full md:w-1/2 max-w-md bg-white dark:bg-gray-900 shadow-xl p-6 rounded space-y-4">
         <h2 className="text-3xl font-bold mb-6 text-center text-green-600">
           Create an Account
         </h2>
 
         <form onSubmit={handleRegister} className="space-y-4">
-          <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
             Your Name
           </label>
           <input
@@ -169,7 +169,7 @@ const Register = () => {
             required
           />
 
-          <label htmlFor="photo" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="photo" className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
             Upload Photo
           </label>
           <input
@@ -180,7 +180,7 @@ const Register = () => {
             required
           />
 
-          <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
             Email
           </label>
           <input
@@ -191,7 +191,7 @@ const Register = () => {
             required
           />
 
-          <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">
+          <label htmlFor="password" className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
             Password
           </label>
           <input

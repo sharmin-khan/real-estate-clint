@@ -6,11 +6,10 @@ import useRole from "../hooks/useRole";
 import LoadingSpinner from "../component/LoadingSpinner/LoadingSpinner";
 
 const DashboardLayout = () => {
-    useEffect(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
-    
   const { user } = use(AuthContext);
   const [role, loading] = useRole(user?.email);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -20,7 +19,7 @@ const DashboardLayout = () => {
   }
 
   return (
-    <div className="md:flex min-h-screen bg-green-600/20">
+    <div className="md:flex min-h-screen">
       {/* Mobile header with toggle button */}
       <div className="md:hidden flex items-center justify-between bg-green-500 p-4 ">
         <h2 className="text-xl font-bold text-white">Dashboard</h2>
@@ -38,7 +37,11 @@ const DashboardLayout = () => {
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
           </svg>
         </button>
       </div>
@@ -46,7 +49,7 @@ const DashboardLayout = () => {
       {/* Sidebar */}
       <div
         className={`
-          fixed inset-y-0 left-0 z-50 w-64 bg-green-500 text-white p-4 transform
+          fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-br from-green-500 to-green-600/50 text-white p-4 transform
           md:static md:translate-x-0 md:flex md:flex-col md:w-64 md:min-h-screen 
           transition-transform duration-200 ease-in-out
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -54,34 +57,47 @@ const DashboardLayout = () => {
       >
         {/* Close button on mobile */}
         {/* Mobile Dashboard header with close button */}
-<div className="md:hidden flex justify-between items-center mb-4">
-  <h2 className="text-xl font-bold">Dashboard</h2>
-  <button
-    onClick={() => setSidebarOpen(false)}
-    className="text-white focus:outline-none"
-    aria-label="Close sidebar"
-  >
-    <svg
-      className="w-6 h-6"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  </button>
-</div>
-
+        <div className="md:hidden flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold">Dashboard</h2>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="text-white focus:outline-none"
+            aria-label="Close sidebar"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
 
         <h2 className="text-xl font-bold mb-4 hidden md:block">Dashboard</h2>
 
         {/* Common */}
         <NavLink
+          to="/"
+          className={({ isActive }) =>
+            "block py-1 hover:underline" +
+            (isActive ? " font-bold text-black" : "")
+          }
+          onClick={() => setSidebarOpen(false)}
+        >
+          Home
+        </NavLink>
+        <NavLink
           to="/dashboard/profile"
           className={({ isActive }) =>
-            (isActive ? " font-bold text-black" : "")
+            isActive ? " font-bold text-black" : ""
           }
           onClick={() => setSidebarOpen(false)}
         >

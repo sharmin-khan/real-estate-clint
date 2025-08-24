@@ -85,14 +85,14 @@ const Login = () => {
 };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-gray-50 p-6">
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center  p-6">
       {/* Left: Lottie Animation */}
       <div className="w-full md:w-1/2 max-w-lg lg:block hidden ">
         <Lottie animationData={loginAnimation} loop={true} />
       </div>
 
       {/* Right: Login Form */}
-      <div className="w-full md:w-1/2 max-w-md bg-white rounded-lg shadow-lg p-8">
+      <div className="w-full md:w-1/2 max-w-md bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8">
         <h2 className="text-3xl font-bold mb-6 text-center text-green-600">
           Login to Your Account
         </h2>
@@ -101,7 +101,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-gray-700 font-semibold mb-2"
+              className="block text-gray-700 dark:text-gray-300 font-semibold mb-2"
             >
               Email
             </label>
@@ -118,7 +118,7 @@ const Login = () => {
           <div>
             <label
               htmlFor="password"
-              className="block text-gray-700 font-semibold mb-2"
+              className="block text-gray-700 dark:text-gray-300 font-semibold mb-2"
             >
               Password
             </label>
@@ -176,7 +176,7 @@ const Login = () => {
           </div>
         </form>
 
-        <p className="mt-6 text-center text-gray-600">
+        <p className="mt-6 text-center text-gray-600 dark:text-gray-300">
           Don't have an account?{" "}
           <Link to="/register" className="text-green-500 hover:underline">
             Register here

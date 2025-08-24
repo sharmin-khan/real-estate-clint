@@ -7,8 +7,8 @@ const Wishlist = ({ wishlist = [], onRemove }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
-    <div className="p-4 sm:p-6 max-w-7xl mx-auto">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+    <div className="p-4 sm:p-6 max-w-6xl mx-auto">
+      <h2 className="text-3xl font-bold mb-6 text-center">
         My Wishlist
       </h2>
 
@@ -21,7 +21,7 @@ const Wishlist = ({ wishlist = [], onRemove }) => {
           {wishlist.map((item) => (
             <div
               key={item._id}
-              className="border rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 bg-white flex flex-col"
+              className="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 bg-white dark:bg-gray-900/50 flex flex-col"
             >
               {/*  Ensure correct image key — may need 'image' or 'propertyImage' */}
               <img
@@ -36,7 +36,7 @@ const Wishlist = ({ wishlist = [], onRemove }) => {
                   {item.title || item.propertyTitle}
                 </h3>
 
-                <p className="text-gray-600 text-sm sm:text-base mt-1 truncate">
+                <p className="text-green-500 text-sm sm:text-base mt-1 truncate">
                   <strong>Location:</strong> {item.location}
                 </p>
 
@@ -49,13 +49,13 @@ const Wishlist = ({ wishlist = [], onRemove }) => {
                       className="w-8 h-8 rounded-full"
                       alt={item.agentName}
                     />
-                    <span className="text-sm">{item.agentName}</span>
+                    <span className="text-sm text-green-500">{item.agentName}</span>
                   </div>
                   <p className="text-sm mt-1">
-                    Price: {item.priceMin} - {item.priceMax} BDT
+                   <strong> Price :</strong> {item.priceMin} - {item.priceMax} BDT
                   </p>
                   <p className="text-sm mt-1">
-                    Status: {item.verificationStatus}
+                  <strong>Status :</strong> <span className="text-green-500">{item.verificationStatus}</span>
                   </p>
                 </div>
 

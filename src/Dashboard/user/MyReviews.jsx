@@ -31,16 +31,16 @@ const MyReviews = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-6 text-center">My Reviews</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">My Reviews</h2>
       {reviews.length === 0 ? (
-        <p className="text-center text-gray-500">You have not given any reviews yet.</p>
+        <p className="text-center text-gray-600">You have not given any reviews yet.</p>
       ) : (
         <div className="space-y-4">
           {reviews.map((review) => (
-            <div key={review._id} className="border rounded-lg shadow p-4 bg-white">
+            <div key={review._id} className=" rounded-lg shadow p-4 bg-base-200 dark:bg-gray-900">
               <h3 className="text-lg font-semibold mb-1">{review.propertyTitle || "Property"}</h3>
-              <p className="text-gray-600 mb-1">Agent: {review.agentName || "N/A"}</p>
-              <p className="text-gray-500 text-sm mb-2">{review.time ? new Date(review.time).toLocaleString() : ""}</p>
+              <p className="text-gray-600 dark:text-gray-400 mb-1">Agent: {review.agentName || "N/A"}</p>
+              <p className="text-gray-600 dark:text-gray-400  text-sm mb-2">{review.time ? new Date(review.time).toLocaleString() : ""}</p>
               <p className="mb-2">{review.comment}</p>
               <button
                 onClick={() => deleteMutation.mutate(review._id)}
