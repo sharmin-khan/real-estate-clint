@@ -1,19 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/building.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 import ThemeToggle from "../../component/ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger state
 
   const navLinks = (
     <>
       <li>
         <NavLink
           to="/"
-          className="font-semibold lg:text-lg hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          onClick={() => setIsMenuOpen(false)}
+          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
         >
           Home
         </NavLink>
@@ -21,7 +23,8 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/all-properties"
-          className="font-semibold lg:text-lg  hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          onClick={() => setIsMenuOpen(false)}
+          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
         >
           All Properties
         </NavLink>
@@ -29,23 +32,26 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/dashboard"
-          className="font-semibold lg:text-lg hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          onClick={() => setIsMenuOpen(false)}
+          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
         >
           Dashboard
         </NavLink>
       </li>
-       <li>
+      <li>
         <NavLink
           to="/offers"
-          className="font-semibold lg:text-lg hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          onClick={() => setIsMenuOpen(false)}
+          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
         >
-         Offers
+          Offers
         </NavLink>
       </li>
-       <li>
+      <li>
         <NavLink
           to="/blogs"
-          className="font-semibold lg:text-lg hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          onClick={() => setIsMenuOpen(false)}
+          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
         >
           Blogs
         </NavLink>
@@ -56,7 +62,6 @@ const Navbar = () => {
   const handleLogout = () => {
     logOut()
       .then(() => {
-        console.log("User logged out");
         Swal.fire({
           icon: "success",
           title: "Log out Successfully",
@@ -72,7 +77,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-base-100 dark:text-white sticky top-0 z-50 transition">
-      <div className="navbar w-11/12 mx-auto p-0 py-2 ">
+      <div className="navbar w-11/12 mx-auto p-0 py-2">
         {/* Left Side Logo */}
         <div className="navbar-start">
           <Link to="/" className="flex items-center text-xl font-extrabold">
@@ -84,12 +89,12 @@ const Navbar = () => {
         </div>
 
         {/* Center Menu - Desktop only */}
-        <div className="navbar-center hidden md:flex">
+        <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal gap-2 px-1">{navLinks}</ul>
         </div>
 
         {/* Right Side */}
-        <div className="navbar-end flex items-center gap-2">
+        <div className="navbar-end flex items-center gap-1">
           {user ? (
             <>
               <img
@@ -98,13 +103,13 @@ const Navbar = () => {
                 title={user.displayName}
                 className="w-10 h-10 rounded-full border border-green-500"
               />
-              <span className="font-semibold text-green-500 hidden sm:inline">
+              <span className="font-semibold lg:text-sm text-green-500 hidden sm:inline">
                 {user.displayName || "User"}
               </span>
-              <ThemeToggle /> 
+              <ThemeToggle />
               <button
                 onClick={handleLogout}
-                className="text-red-500 lg:text-lg text-sm font-semibold border border-red-500 px-4 py-2 rounded-lg hover:bg-red-500 hover:text-white transition cursor-pointer"
+                className=" lg:block hidden text-white bg-red-500 lg:text-base text-sm font-semibold border border-red-500 px-4 py-2 rounded-lg hover:bg-white hover:text-red-500 transition cursor-pointer"
               >
                 Logout
               </button>
@@ -114,12 +119,74 @@ const Navbar = () => {
               <ThemeToggle />
               <Link
                 to="/login"
-                className="lg:text-lg text-sm font-semibold border px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-white hover:text-green-500 cursor-pointer transition"
+                className=" lg:block hidden lg:text-base text-sm font-semibold border px-4 py-2 rounded-lg bg-green-500 text-white hover:bg-white hover:text-green-500 cursor-pointer transition"
               >
                 Login
               </Link>
             </>
           )}
+
+          {/* Hamburger for Mobile */}
+          <div className="lg:hidden">
+            <button
+              className="btn btn-square btn-ghost"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+
+            {/* Mobile Menu */}
+            {isMenuOpen && (
+              <ul className="menu menu-compact dropdown-content mt-2 p-2 shadow bg-base-100 rounded-box w-52 absolute right-0 top-full z-50">
+                {navLinks}
+                {user ? (
+                  <li>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsMenuOpen(false);
+                      }}
+                      className="text-red-500 font-semibold w-24 border border-red-500 px-2 py-1 rounded-lg flex justify-center items-center"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                ) : (
+                  <li>
+                    <Link
+                      to="/login"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="font-semibold text-green-500 border border-green-500 px-2 py-1  w-24 rounded-lg flex justify-center items-center"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                )}
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </div>

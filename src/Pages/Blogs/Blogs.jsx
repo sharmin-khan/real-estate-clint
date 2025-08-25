@@ -35,7 +35,7 @@ const Blogs = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 flex flex-col gap-12">
+    <div className="max-w-6xl mx-auto my-12 flex flex-col gap-12">
       {/* Intro Section */}
       <div className="text-center flex flex-col items-center gap-4">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100">
