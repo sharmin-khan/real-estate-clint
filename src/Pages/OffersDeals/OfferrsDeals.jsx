@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Sample deals data
 const dealsData = [
@@ -32,6 +32,9 @@ const dealsData = [
 ];
 
 const OffersDeals = () => {
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });    
+    }, []);
   return (
     <div className="max-w-6xl mx-auto my-12 flex flex-col">
       {/* Header Section */}

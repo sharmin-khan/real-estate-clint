@@ -9,55 +9,61 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger state
 
-  const navLinks = (
-    <>
-      <li>
-        <NavLink
-          to="/"
-          onClick={() => setIsMenuOpen(false)}
-          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/all-properties"
-          onClick={() => setIsMenuOpen(false)}
-          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
-        >
-          All Properties
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/dashboard"
-          onClick={() => setIsMenuOpen(false)}
-          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
-        >
-          Dashboard
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/offers"
-          onClick={() => setIsMenuOpen(false)}
-          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
-        >
-          Offers
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/blogs"
-          onClick={() => setIsMenuOpen(false)}
-          className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
-        >
-          Blogs
-        </NavLink>
-      </li>
-    </>
-  );
+ const navLinks = (
+  <>
+    <li>
+      <NavLink
+        to="/"
+        onClick={() => setIsMenuOpen(false)}
+        className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+      >
+        Home
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        to="/all-properties"
+        onClick={() => setIsMenuOpen(false)}
+        className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+      >
+        All Properties
+      </NavLink>
+    </li>
+
+    {user && (
+      <>
+        <li>
+          <NavLink
+            to="/dashboard"
+            onClick={() => setIsMenuOpen(false)}
+            className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          >
+            Dashboard
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/offers"
+            onClick={() => setIsMenuOpen(false)}
+            className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+          >
+            Offers
+          </NavLink>
+        </li>
+      </>
+    )}
+
+    <li>
+      <NavLink
+        to="/blogs"
+        onClick={() => setIsMenuOpen(false)}
+        className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+      >
+        Blogs
+      </NavLink>
+    </li>
+  </>
+);
 
   const handleLogout = () => {
     logOut()

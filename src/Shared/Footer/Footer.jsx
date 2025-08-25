@@ -1,8 +1,12 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/building.png";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext/AuthContext";
 
 const Footer = () => {
+  const { user } = useContext(AuthContext); // user context
+
   return (
     <footer className="bg-base-200">
       <div className="w-11/12 mx-auto py-10 flex flex-col md:flex-row md:justify-between gap-10">
@@ -24,24 +28,40 @@ const Footer = () => {
         <div className="flex-1">
           <h3 className="footer-title">Quick Links</h3>
           <div className="flex flex-col gap-3">
-            <Link
+            <NavLink
               to="/"
-              className="font-semibold text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-4  [&.active]:text-green-500"
+              className="font-semibold text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-4 [&.active]:text-green-500"
             >
               Home
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/all-properties"
-              className="font-semibold text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-4  [&.active]:text-green-500"
+              className="font-semibold text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-4 [&.active]:text-green-500"
             >
               All Properties
-            </Link>
-            <Link
-              to="/dashboard"
-              className="font-semibold text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-4  [&.active]:text-green-500"
+            </NavLink>
+            {user && (
+              <>
+                <NavLink
+                  to="/dashboard"
+                  className="font-semibold text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-4 [&.active]:text-green-500"
+                >
+                  Dashboard
+                </NavLink>
+                <NavLink
+                  to="/offers"
+                  className="font-semibold text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-4 [&.active]:text-green-500"
+                >
+                  Offers
+                </NavLink>
+              </>
+            )}
+            <NavLink
+              to="/blogs"
+              className="font-semibold text-gray-700 hover:underline hover:decoration-green-500 hover:underline-offset-4 [&.active]:text-green-500"
             >
-              Dashboard
-            </Link>
+              Blogs
+            </NavLink>
           </div>
         </div>
 

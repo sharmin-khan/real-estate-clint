@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect } from "react";
 import Lottie from "lottie-react";
 import loginAnimation from "../../../assets/images/login.json";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../context/AuthContext/AuthContext";
 
 const Login = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });  
+  }, []);
   const { logInUser, signInWithGoogle } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();

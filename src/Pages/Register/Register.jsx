@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/images/register.json";
@@ -8,12 +8,15 @@ import axios from "axios";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });  
+  }, []);
   const { createUser, signInWithGoogle } = React.useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const imgbbKey = import.meta.env.VITE_IMGBB_API_KEY; // imgbb api key
+  const imgbbKey = import.meta.env.VITE_IMGBB_API_KEY;
 
   // Image upload to imgbb
   const handleImageUpload = async (file) => {

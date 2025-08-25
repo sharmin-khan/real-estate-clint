@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const blogsData = [
   {
@@ -28,6 +28,9 @@ const blogsData = [
 ];
 
 const Blogs = () => {
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });    
+    }, []);
   const [expandedId, setExpandedId] = useState(null);
 
   const toggleReadMore = (id) => {
