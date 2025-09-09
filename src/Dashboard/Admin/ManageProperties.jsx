@@ -38,7 +38,7 @@ const ManageProperties = () => {
       <h2 className="text-2xl font-bold mb-6 text-center">Manage Properties</h2>
 
       {/* Table view for md and up */}
-      <div className="hidden dark:border md:block overflow-x-auto rounded-lg shadow">
+      <div className="hidden dark:border lg:block overflow-x-auto rounded-lg shadow">
         <table className="min-w-[700px] w-full text-sm md:text-base">
           <thead className="bg-gray-100 dark:bg-gray-900/50">
             <tr>
@@ -109,9 +109,9 @@ const ManageProperties = () => {
         {properties.map((property) => (
           <div
             key={property._id}
-            className="border rounded p-4 shadow bg-white"
+            className="rounded p-4 shadow-lg bg-white dark:bg-gray-900"
           >
-            <h3 className="font-bold text-lg mb-2">{property.title}</h3>
+            <h3 className="font-bold text-lg mb-2 text-green-600">{property.title}</h3>
             <p><strong>Location:</strong> {property.location}</p>
             <p><strong>Agent:</strong> {property.agentName}</p>
             <p><strong>Email:</strong> {property.agentEmail}</p>

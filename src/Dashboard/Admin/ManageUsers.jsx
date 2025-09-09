@@ -43,7 +43,7 @@ const ManageUsers = () => {
       <h2 className="text-2xl font-bold mb-6 text-center">Manage Users</h2>
 
       {/* Table view for md and up */}
-      <div className="hidden md:block overflow-x-auto rounded-lg shadow">
+      <div className="hidden lg:block overflow-x-auto rounded-lg shadow">
         <table className="min-w-full w-full text-sm md:text-base table-auto">
           <thead className=" bg-gray-100 dark:bg-gray-900/50">
             <tr>
@@ -112,11 +112,11 @@ const ManageUsers = () => {
       </div>
 
       {/* Card view for mobile (sm) */}
-      <div className="md:hidden space-y-4">
+      <div className="lg:hidden space-y-4">
         {users.map((user) => (
           <div
             key={user._id}
-            className="border border-gray-300 rounded p-4 shadow-sm bg-white"
+            className=" border-gray-300 rounded p-4 shadow-lg bg-white dark:bg-gray-900"
           >
             <p>
               <span className="font-semibold">Name: </span>
