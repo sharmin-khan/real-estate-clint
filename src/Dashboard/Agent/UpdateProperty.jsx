@@ -5,6 +5,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
+import { Helmet } from "react-helmet";
 
 const UpdateProperty = () => {
   const { id } = useParams();
@@ -81,6 +82,14 @@ const UpdateProperty = () => {
   if (!property) return <p>Property not found.</p>;
 
   return (
+ <>
+ <Helmet>
+      <title>Update Property - PropEase</title>
+      <meta
+        name="description"
+        content={`Update details for ${property.title}. Modify the property information and save changes.`}
+      />
+ </Helmet>
  <div className="max-w-lg mx-auto p-8 rounded-2xl shadow-lg bg-white dark:bg-gray-900 transition-colors duration-300 mt-12">
   <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">
     Update Property
@@ -206,6 +215,7 @@ const UpdateProperty = () => {
     </button>
   </form>
 </div>
+ </>
 
   );
 };

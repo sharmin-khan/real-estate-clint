@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const fetchProperties = async () => {
   const res = await axios.get("https://reak-estate-server.vercel.app/properties");
@@ -34,6 +35,14 @@ const ManageProperties = () => {
   if (isLoading) return <p className="text-center my-10">Loading...</p>;
 
   return (
+    <>
+    <Helmet>
+      <title>Manage Properties - PropEase</title>
+      <meta
+        name="description"
+        content="Admin dashboard to manage and verify properties listed on PropEase. Approve or reject property listings."
+      />
+    </Helmet>
     <div className="w-full max-w-full px-2 mx-auto">
       <h2 className="text-2xl font-bold mb-6 text-center">Manage Properties</h2>
 
@@ -158,6 +167,7 @@ const ManageProperties = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

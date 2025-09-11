@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/images/building.png";
+import logo from "../../assets/images/logo.png";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";

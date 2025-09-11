@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 // Sample deals data
 const dealsData = [
@@ -36,10 +37,18 @@ const OffersDeals = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });    
     }, []);
   return (
+ <>
+ <Helmet>
+      <title>Offers - PropEase</title>
+      <meta
+        name="description"
+        content="Explore exclusive property offers and deals on PropEase. Find your dream home at unbeatable prices with limited-time discounts."
+      />
+ </Helmet>
     <div className="max-w-6xl mx-auto my-12 flex flex-col">
       {/* Header Section */}
       <div className="text-center flex flex-col items-center gap-3">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-gray-100">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100">
           Exclusive Property Deals
         </h1>
         <p className="text-gray-700 dark:text-gray-300 max-w-3xl leading-relaxed">
@@ -120,6 +129,7 @@ const OffersDeals = () => {
         </button>
       </div>
     </div>
+ </>
   );
 };
 

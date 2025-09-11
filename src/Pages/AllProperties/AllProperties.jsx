@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import axios from "axios";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 const AllProperties = () => {
   useEffect(() => {
@@ -31,6 +32,14 @@ const AllProperties = () => {
   );
 
   return (
+  <>
+     <Helmet>
+        <title>All Properties - PropEase</title>
+        <meta
+          name="description"
+          content="Browse all verified and available properties on PropEase. Find your dream home or investment property."
+        />
+      </Helmet>
     <div className="my-12">
       <h2 className="text-3xl font-bold  text-center">All Properties</h2>
       <p className="text-center mb-10 mt-3 max-w-2xl mx-auto">
@@ -90,6 +99,7 @@ const AllProperties = () => {
         ))}
       </div>
     </div>
+  </>
   );
 };
 

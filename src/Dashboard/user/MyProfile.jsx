@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import useRole from "../../hooks/useRole";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
+import { Helmet } from "react-helmet";
 
 const MyProfile = () => {
   const { user } = use(AuthContext); // Get user from context
@@ -11,6 +12,14 @@ const MyProfile = () => {
   }
 
   return (
+   <>
+   <Helmet>
+      <title>My Profile - PropEase</title>
+      <meta
+        name="description"
+        content="View and manage your profile information on PropEase. Update your details and check your role."
+      />  
+   </Helmet>
     <div className="flex justify-center items-center min-h-screen">
       <div className="max-w-md w-full bg-gradient-to-br from-green-500 to-green-600/50 shadow-lg p-6 rounded-lg">
         <h2 className="text-2xl font-bold mb-4 text-center">My Profile</h2>
@@ -36,6 +45,7 @@ const MyProfile = () => {
         </div>
       </div>
     </div>
+   </>
   );
 };
 

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 import useRole from "../hooks/useRole";
 import LoadingSpinner from "../component/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const DashboardLayout = () => {
   useEffect(() => {
@@ -19,6 +20,14 @@ const DashboardLayout = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Dashboard - PropEase</title>
+      <meta
+        name="description"
+        content="Access your dashboard on PropEase. Manage your profile, properties, reviews, and more."
+      />
+    </Helmet>
     <div className="md:flex min-h-screen">
       {/* Mobile header with toggle button */}
       <div className="md:hidden flex items-center justify-between bg-green-500 p-4 ">
@@ -236,6 +245,7 @@ const DashboardLayout = () => {
         ></div>
       )}
     </div>
+    </>
   );
 };
 

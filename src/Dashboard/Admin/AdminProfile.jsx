@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import useRole from "../../hooks/useRole";
+import { Helmet } from "react-helmet";
 
 const AdminProfile = () => {
   const { user } = use(AuthContext);
@@ -13,10 +14,18 @@ const AdminProfile = () => {
   }
 
   return (
+<>
+<Helmet>
+  <title>My Profile - PropEase</title>
+  <meta
+    name="description"
+    content="View and manage your admin profile on PropEase. Update your details and check your role."
+  />
+</Helmet>
   <div className="flex justify-center items-center min-h-screen transition-colors duration-300">
   <div className="max-w-md w-full bg-white dark:bg-gray-800 shadow-lg p-6 rounded-2xl">
     <h2 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">
-      Agent Profile
+      My Profile
     </h2>
 
     <div className="flex flex-col items-center">
@@ -40,6 +49,7 @@ const AdminProfile = () => {
     </div>
   </div>
 </div>
+</>
 
   );
 };

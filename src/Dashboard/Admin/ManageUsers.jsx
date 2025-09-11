@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -39,6 +40,14 @@ const ManageUsers = () => {
     );
 
   return (
+ <>
+ <Helmet>
+  <title>Manage Users - PropEase</title>
+  <meta
+    name="description"
+    content="Admin dashboard to manage users on PropEase. Assign roles, mark frauds, and delete users as needed."
+  />  
+ </Helmet>
     <div className="w-full max-w-6xl mx-auto px-2 md:px-6 lg:px-12">
       <h2 className="text-2xl font-bold mb-6 text-center">Manage Users</h2>
 
@@ -180,6 +189,7 @@ const ManageUsers = () => {
         ))}
       </div>
     </div>
+ </>
   );
 };
 

@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
@@ -30,6 +31,14 @@ const MyReviews = () => {
   if (isLoading) return <div className="text-center mt-10"><LoadingSpinner /></div>;
 
   return (
+   <>
+   <Helmet>
+      <title>My Reviews - PropEase</title>
+      <meta
+        name="description"
+        content="View and manage your property reviews on PropEase. Edit or delete your reviews as needed."
+      />  
+   </Helmet>
     <div className="max-w-3xl mx-auto p-4">
       <h2 className="text-3xl font-bold mb-6 text-center">My Reviews</h2>
       {reviews.length === 0 ? (
@@ -37,7 +46,7 @@ const MyReviews = () => {
       ) : (
         <div className="space-y-4">
           {reviews.map((review) => (
-            <div key={review._id} className=" rounded-lg shadow p-4 bg-base-200 dark:bg-gray-900">
+            <div key={review._id} className=" rounded-lg shadow p-4 bg-base-200 dark:bg-green-800/80">
               <h3 className="text-lg font-semibold mb-1">{review.propertyTitle || "Property"}</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-1">Agent: {review.agentName || "N/A"}</p>
               <p className="text-gray-600 dark:text-gray-400  text-sm mb-2">{review.time ? new Date(review.time).toLocaleString() : ""}</p>
@@ -53,6 +62,7 @@ const MyReviews = () => {
         </div>
       )}
     </div>
+   </>
   );
 };
 

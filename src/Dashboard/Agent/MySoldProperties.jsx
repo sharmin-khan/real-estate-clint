@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const MySoldProperties = () => {
   const { user } = useContext(AuthContext);
@@ -20,6 +21,14 @@ const MySoldProperties = () => {
   if (isLoading) return <div className="text-center my-10"><LoadingSpinner/></div>;
 
   return (
+<>
+<Helmet>
+  <title>My Sold Properties - PropEase</title>
+  <meta
+    name="description"
+    content="View and manage properties you have sold on PropEase. Keep track of your successful sales."
+  />
+</Helmet>
   <div className="max-w-6xl mx-auto p-4">
   <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center ">
     My Sold Properties
@@ -57,6 +66,7 @@ const MySoldProperties = () => {
     </table>
   </div>
 </div>
+</>
 
   );
 };

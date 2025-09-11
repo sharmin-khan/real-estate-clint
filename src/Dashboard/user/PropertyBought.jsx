@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const PropertyBought = () => {
   const { user } = useContext(AuthContext);
@@ -19,6 +20,14 @@ const PropertyBought = () => {
   if (isLoading) return <div className="text-center mt-10"><LoadingSpinner /></div>;
 
   return (
+  <>
+  <Helmet>
+      <title>Property Bought - PropEase</title>
+      <meta
+        name="description"
+        content="View and manage your property offers on PropEase. Check the status of your offers and proceed to payment for accepted offers."
+      />
+  </Helmet>
     <div className="max-w-6xl mx-auto p-4">
       <h2 className="text-3xl font-bold mb-6 text-center">My Property Offers</h2>
       {offers.length === 0 ? (
@@ -53,6 +62,7 @@ const PropertyBought = () => {
         </div>
       )}
     </div>
+  </>
   );
 };
 

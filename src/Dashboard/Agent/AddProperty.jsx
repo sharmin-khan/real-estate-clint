@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const AddProperty = () => {
   const { user } = useContext(AuthContext);
@@ -56,6 +57,14 @@ const AddProperty = () => {
   };
 
   return (
+<>
+<Helmet>
+  <title>Add Property - PropEase</title>
+  <meta
+    name="description"
+    content="Add a new property to PropEase. Fill out the form to list your property for sale or rent."
+  />  
+</Helmet>
 <div className="min-h-screen flex justify-center items-center">
   <div className="max-w-lg w-full bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg">
     <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center">
@@ -171,6 +180,7 @@ const AddProperty = () => {
     </form>
   </div>
 </div>
+</>
 
 
   );

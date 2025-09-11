@@ -1,14 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useRole from "../../hooks/useRole";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 import axios from "axios"; 
+import { Helmet } from "react-helmet";
 
 const PropertyDetailsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); 
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { user } = useContext(AuthContext);
@@ -107,7 +111,15 @@ const PropertyDetailsPage = () => {
   if (roleLoading) return <div className="text-center mt-10"><LoadingSpinner /></div>;
 
   return (
-  <div className="max-w-4xl mx-auto p-6 transition-colors duration-300 bg-gray-50 dark:bg-gray-900 rounded-2xl">
+<>
+<Helmet>
+  <title>Property Details - PropEase</title>
+  <meta
+    name="description"
+    content={`Details and reviews for ${property.title}. Find out more about this property on PropEase.`}
+  />
+</Helmet>
+ <div className="max-w-4xl mx-auto p-6 transition-colors duration-300 bg-gray-50 dark:bg-gray-900 rounded-2xl">
   <h1 className="text-2xl font-bold mb-4 text-center md:text-left text-gray-900 dark:text-gray-100">
     Property Details
   </h1>
@@ -196,6 +208,7 @@ const PropertyDetailsPage = () => {
     </div>
   )}
 </div>
+</> 
 
   );
 };

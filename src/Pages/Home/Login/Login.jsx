@@ -4,6 +4,7 @@ import loginAnimation from "../../../assets/images/login.json";
 import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../context/AuthContext/AuthContext";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   useEffect(() => {
@@ -88,6 +89,11 @@ const Login = () => {
 };
 
   return (
+  <>
+     <Helmet>
+      <title>Login - PropEase</title>
+      <meta name="description" content="Login to access your Real Estate account." />
+    </Helmet>
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-center  p-6">
       {/* Left: Lottie Animation */}
       <div className="w-full md:w-1/2 max-w-lg lg:block hidden ">
@@ -187,6 +193,7 @@ const Login = () => {
         </p>
       </div>
     </div>
+  </>
   );
 };
 

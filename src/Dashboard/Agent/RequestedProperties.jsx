@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const RequestedProperties = () => {
     useEffect(() => {
@@ -33,6 +34,14 @@ const RequestedProperties = () => {
   if (isLoading) return <div className="text-center my-10"><LoadingSpinner /></div>;
 
   return (
+   <>
+   <Helmet>
+      <title>Requested Properties - PropEase</title>
+      <meta
+        name="description"
+        content="View and manage properties that have received offers on PropEase. Accept or reject offers from potential buyers."
+      />  
+   </Helmet>
     <div className="max-w-6xl mx-auto px-2 md:px-4 py-4">
       <h2 className="text-xl md:text-2xl font-bold mb-6 text-center ">
         Requested / Offered Properties
@@ -87,6 +96,8 @@ const RequestedProperties = () => {
         </table>
       </div>
     </div>
+   
+   </>
   );
 };
 

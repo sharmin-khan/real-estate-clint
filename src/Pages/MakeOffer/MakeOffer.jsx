@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
 import useRole from "../../hooks/useRole";
+import { Helmet } from "react-helmet";
 
 const MakeOffer = () => {
     useEffect(() => {
@@ -62,6 +63,14 @@ const MakeOffer = () => {
   };
 
   return (
+ <>
+ <Helmet>
+      <title>Make Offer - PropEase</title>
+      <meta
+        name="description"
+        content={`Make an offer on ${property.title}. Submit your offer amount and buying date to the agent.`}
+      />  
+ </Helmet>
    <div className="max-w-lg mx-auto p-6 rounded shadow mt-8 bg-white dark:bg-gray-800 transition-colors duration-300">
   <h2 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-gray-100">
     Make an Offer
@@ -149,6 +158,7 @@ const MakeOffer = () => {
     </button>
   </form>
 </div>
+ </>
 
   );
 };

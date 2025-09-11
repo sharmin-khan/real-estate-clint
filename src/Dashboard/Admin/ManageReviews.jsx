@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const ManageReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -22,6 +23,14 @@ const ManageReviews = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
+  <>
+  <Helmet>
+  <title>Manage Reviews - PropEase</title>
+  <meta
+    name="description"
+    content="Admin dashboard to manage and delete property reviews on PropEase. Review user feedback and maintain quality."
+  />  
+  </Helmet>
     <div className="max-w-6xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-6 text-center">Manage Reviews</h2>
       {reviews.length === 0 ? (
@@ -53,6 +62,7 @@ const ManageReviews = () => {
         </div>
       )}
     </div>
+  </>
   );
 };
 

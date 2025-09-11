@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { Helmet } from 'react-helmet';
 
 const CheckoutForm = ({ amount, offerId }) => {
   const stripe = useStripe();
@@ -80,6 +81,10 @@ const CheckoutForm = ({ amount, offerId }) => {
   };
 
   return (
+<>
+<Helmet>
+      <title>Checkout - PropEase</title>
+</Helmet>
    <form onSubmit={handleSubmit} className="space-y-4">
   {/* Amount Display */}
   <div className="p-3 border border-gray-300 dark:border-gray-600 rounded w-full bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
@@ -111,6 +116,7 @@ const CheckoutForm = ({ amount, offerId }) => {
     </div>
   )}
 </form>
+</>
 
   );
 };

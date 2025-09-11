@@ -3,6 +3,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -23,12 +24,21 @@ const Payment = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Payment - PropEase</title>
+      <meta
+        name="description"
+        content={`Make a payment for your offer of $${offer.offerAmount} on PropEase.`}
+      />
+    </Helmet>
     <div className="max-w-md mx-auto mt-10">
       <h2 className="text-2xl font-bold mb-4">Make a Payment</h2>
       <Elements stripe={stripePromise}>
         <CheckoutForm amount={offer.offerAmount} offerId={offer._id} />
       </Elements>
     </div>
+    </>
   );
 };
 

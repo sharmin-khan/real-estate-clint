@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -7,6 +8,14 @@ const Wishlist = ({ wishlist = [], onRemove }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
+    <>
+    <Helmet>
+      <title>My Wishlist - PropEase</title>
+      <meta
+        name="description"
+        content="View and manage your wishlist of favorite properties on PropEase. Keep track of properties you're interested in."
+      />
+    </Helmet>
     <div className="p-4 sm:p-6 max-w-6xl mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-center">
         My Wishlist
@@ -96,6 +105,7 @@ const Wishlist = ({ wishlist = [], onRemove }) => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

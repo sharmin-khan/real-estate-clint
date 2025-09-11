@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext/AuthContext";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../component/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet";
 
 const MyAddedProperties = () => {
   useEffect(() => {
@@ -61,6 +62,14 @@ const MyAddedProperties = () => {
     );
 
   return (
+<>
+<Helmet>
+  <title>My Added Properties - PropEase</title>   
+  <meta
+    name="description"
+    content="View and manage properties you have added on PropEase. Update or delete your property listings as needed."
+  />
+</Helmet>
    <div className="max-w-6xl mx-auto p-4">
   <h2 className="text-2xl font-bold mb-6 text-gray-900 text-center dark:text-gray-100">
     My Added Properties
@@ -233,6 +242,7 @@ const MyAddedProperties = () => {
     </div>
   )}
 </div>
+</>
 
   );
 };
