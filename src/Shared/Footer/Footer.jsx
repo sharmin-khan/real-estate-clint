@@ -8,7 +8,7 @@ const Footer = () => {
   const { user } = useContext(AuthContext); // user context
 
   return (
-    <footer className="bg-base-200">
+  <footer className="sticky top-0 z-50 transition bg-gradient-to-r from-green-900 via-green-600 to-green-700 dark:from-gray-800 dark:via-gray-900 dark:to-black text-white">
       <div className="w-11/12 mx-auto py-10 flex flex-col md:flex-row md:justify-between gap-10">
         {/* Logo & Description */}
         <div className="flex-1">
@@ -104,9 +104,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
       {/* Copyright */}
-      <div className="text-center py-4 bg-base-300 text-sm">
+      <div className="border-t border-white/20"></div>
+      <div className="text-center py-4 text-sm">
         © {new Date().getFullYear()} PropEase. All rights reserved.
       </div>
     </footer>
