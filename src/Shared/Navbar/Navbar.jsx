@@ -114,7 +114,7 @@ className={({ isActive }) =>
         <div className="navbar-start">
           <Link to="/" className="flex items-center text-xl font-extrabold">
             <img src={logo} alt="logo" className="w-10 h-10" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-yellow-200 to-green-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-green-400 to-green-500">
               PropEase
             </span>
           </Link>

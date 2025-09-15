@@ -29,7 +29,7 @@ const Banner = () => {
             className="absolute inset-0 bg-gray-900/50 flex flex-col items-center justify-center text-white text-center
             md:items-start md:text-left md:px-16"
           >
-            <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-green-600 via-white to-green-700 text-2xl md:text-5xl font-bold mb-4">
+            <h2 className="text-transparent bg-clip-text bg-gradient-to-br from-green-600 via-yellow-100 to-green-700 text-2xl md:text-5xl font-bold mb-4">
               Discover Your Dream Property
             </h2>
             <p className="text-sm md:text-lg max-w-xl mb-6">
