@@ -15,7 +15,12 @@ const Navbar = () => {
       <NavLink
         to="/"
         onClick={() => setIsMenuOpen(false)}
-        className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+className={({ isActive }) =>
+  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${isActive 
+     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+     : "hover:underline hover:decoration-green-500"}`
+}
       >
         Home
       </NavLink>
@@ -24,7 +29,12 @@ const Navbar = () => {
       <NavLink
         to="/all-properties"
         onClick={() => setIsMenuOpen(false)}
-        className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+       className={({ isActive }) =>
+  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${isActive 
+     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+     : "hover:underline hover:decoration-green-500"}`
+}
       >
         All Properties
       </NavLink>
@@ -36,7 +46,12 @@ const Navbar = () => {
           <NavLink
             to="/dashboard"
             onClick={() => setIsMenuOpen(false)}
-            className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+                  className={({ isActive }) =>
+  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${isActive 
+     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+     : "hover:underline hover:decoration-green-500"}`
+}
           >
             Dashboard
           </NavLink>
@@ -45,7 +60,12 @@ const Navbar = () => {
           <NavLink
             to="/offers"
             onClick={() => setIsMenuOpen(false)}
-            className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+                  className={({ isActive }) =>
+  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${isActive 
+     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+     : "hover:underline hover:decoration-green-500"}`
+}
           >
             Offers
           </NavLink>
@@ -57,7 +77,12 @@ const Navbar = () => {
       <NavLink
         to="/blogs"
         onClick={() => setIsMenuOpen(false)}
-        className="font-semibold lg:text-base hover:underline hover:decoration-green-500 hover:underline-offset-8 hover:bg-transparent focus:bg-transparent active:bg-transparent [&.active]:text-green-500"
+               className={({ isActive }) =>
+  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${isActive 
+     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+     : "hover:underline hover:decoration-green-500"}`
+}
       >
         Blogs
       </NavLink>
@@ -82,13 +107,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100 dark:text-white sticky top-0 z-50 transition">
+    <div className="sticky top-0 z-50 transition bg-gradient-to-r from-green-900 via-green-600 to-green-700 dark:from-gray-800 dark:via-gray-900 dark:to-black text-white">
+
       <div className="navbar w-11/12 mx-auto p-0 py-2">
         {/* Left Side Logo */}
         <div className="navbar-start">
           <Link to="/" className="flex items-center text-xl font-extrabold">
             <img src={logo} alt="logo" className="w-10 h-10" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-green-800 to-green-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 via-yellow-200 to-green-500">
               PropEase
             </span>
           </Link>
@@ -165,7 +191,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-              <ul className="menu menu-compact dropdown-content mt-2 p-2 shadow bg-base-100 rounded-box w-52 absolute right-0 top-full z-50">
+              <ul className="menu menu-compact dropdown-content mt-2 p-2 shadow bg-green-700/90 rounded-box w-52 absolute right-0 top-full z-50">
                 {navLinks}
                 {user ? (
                   <li>
