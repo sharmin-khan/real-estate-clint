@@ -17,7 +17,7 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className="p-2 rounded-full transition"
+      className="p-2 rounded-full transition cursor-pointer"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? (

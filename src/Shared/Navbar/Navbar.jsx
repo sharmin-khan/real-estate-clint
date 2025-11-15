@@ -9,86 +9,96 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger state
 
- const navLinks = (
-  <>
-    <li>
-      <NavLink
-        to="/"
-        onClick={() => setIsMenuOpen(false)}
-className={({ isActive }) =>
-  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
-   ${isActive 
-     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
-     : "hover:underline hover:decoration-green-500"}`
-}
-      >
-        Home
-      </NavLink>
-    </li>
-    <li>
-      <NavLink
-        to="/all-properties"
-        onClick={() => setIsMenuOpen(false)}
-       className={({ isActive }) =>
-  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
-   ${isActive 
-     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
-     : "hover:underline hover:decoration-green-500"}`
-}
-      >
-        All Properties
-      </NavLink>
-    </li>
+  const navLinks = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          onClick={() => setIsMenuOpen(false)}
+          className={({ isActive }) =>
+            `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${
+     isActive
+       ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+       : "hover:underline hover:decoration-green-500"
+   }`
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/all-properties"
+          onClick={() => setIsMenuOpen(false)}
+          className={({ isActive }) =>
+            `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${
+     isActive
+       ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+       : "hover:underline hover:decoration-green-500"
+   }`
+          }
+        >
+          All Properties
+        </NavLink>
+      </li>
 
-    {user && (
-      <>
-        <li>
-          <NavLink
-            to="/dashboard"
-            onClick={() => setIsMenuOpen(false)}
-                  className={({ isActive }) =>
-  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
-   ${isActive 
-     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
-     : "hover:underline hover:decoration-green-500"}`
-}
-          >
-            Dashboard
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/offers"
-            onClick={() => setIsMenuOpen(false)}
-                  className={({ isActive }) =>
-  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
-   ${isActive 
-     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
-     : "hover:underline hover:decoration-green-500"}`
-}
-          >
-            Offers
-          </NavLink>
-        </li>
-      </>
-    )}
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/dashboard"
+              onClick={() => setIsMenuOpen(false)}
+              className={({ isActive }) =>
+                `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${
+     isActive
+       ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+       : "hover:underline hover:decoration-green-500"
+   }`
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/offers"
+              onClick={() => setIsMenuOpen(false)}
+              className={({ isActive }) =>
+                `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${
+     isActive
+       ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+       : "hover:underline hover:decoration-green-500"
+   }`
+              }
+            >
+              Offers
+            </NavLink>
+          </li>
+        </>
+      )}
 
-    <li>
-      <NavLink
-        to="/blogs"
-        onClick={() => setIsMenuOpen(false)}
-               className={({ isActive }) =>
-  `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
-   ${isActive 
-     ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
-     : "hover:underline hover:decoration-green-500"}`
-}
-      >
-        Blogs
-      </NavLink>
-    </li>
-  </>
-);
+      <li>
+        <NavLink
+          to="/blogs"
+          onClick={() => setIsMenuOpen(false)}
+          className={({ isActive }) =>
+            `font-semibold lg:text-base px-3 py-2 rounded cursor-pointer
+   ${
+     isActive
+       ? "bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-yellow-200"
+       : "hover:underline hover:decoration-green-500"
+   }`
+          }
+        >
+          Blogs
+        </NavLink>
+      </li>
+    </>
+  );
 
   const handleLogout = () => {
     logOut()
@@ -108,7 +118,6 @@ className={({ isActive }) =>
 
   return (
     <div className="sticky top-0 z-50 transition bg-gradient-to-r from-green-900 via-green-600 to-green-700 dark:from-gray-800 dark:via-gray-900 dark:to-black text-white">
-
       <div className="navbar w-11/12 mx-auto p-0 py-2">
         {/* Left Side Logo */}
         <div className="navbar-start">
